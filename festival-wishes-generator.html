@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wish Fountain - Festival Wishes Generator</title>
+    <!-- Font Awesome from CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .festival-title {
+            color: #ffd700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .festival-title::before, .festival-title::after {
+            content: '🎊';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+        }
+
+        .festival-title::before {
+            right: -45px;
+        }
+
+        .festival-title::after {
+            left: -45px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #e6e6ff;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== APP LAYOUT ===== */
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .card-container, .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== FESTIVAL CARD ===== */
+        .festival-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 5px solid #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .festival-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.7;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .festival-icon1 { top: 20px; left: 20px; animation-delay: 0s; }
+        .festival-icon2 { top: 20px; right: 20px; animation-delay: 1s; }
+        .festival-icon3 { bottom: 20px; left: 20px; animation-delay: 2s; }
+        .festival-icon4 { bottom: 20px; right: 20px; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        .card-title {
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: #fff;
+        }
+
+        .card-sender {
+            font-size: 1.2rem;
+            color: #e6e6ff;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* ===== CONTROLS ===== */
+        .section-title {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .festival-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .festival-btn {
+            padding: 12px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: #ffd700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            border: none;
+        }
+
+        .festival-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .festival-btn span:first-child {
+            font-size: 1.5rem;
+        }
+
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .design-btn.active {
+            border-color: #ffd700;
+            box-shadow: 0 0 10px #ffd700;
+        }
+
+        /* Color designs */
+        .color1 { background: linear-gradient(45deg, #6a11cb, #2575fc); }
+        .color2 { background: linear-gradient(45deg, #ff416c, #ff4b2b); }
+        .color3 { background: linear-gradient(45deg, #11998e, #38ef7d); }
+        .color4 { background: linear-gradient(45deg, #f46b45, #eea849); }
+        .color5 { background: linear-gradient(45deg, #834d9b, #d04ed6); }
+        .color6 { background: linear-gradient(45deg, #0052d4, #4364f7); }
+        .color7 { background: linear-gradient(45deg, #654ea3, #da98b4); }
+        .color8 { background: linear-gradient(45deg, #f7971e, #ffd200); }
+        .color9 { background: linear-gradient(45deg, #3a7bd5, #00d2ff); }
+        .color10 { background: linear-gradient(45deg, #8e2de2, #4a00e0); }
+
+        /* ===== INPUTS ===== */
+        .customize-section {
+            margin-bottom: 25px;
+        }
+
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            border: none;
+        }
+
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ===== BUTTONS ===== */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .edit-btn {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+        }
+
+        .send-btn {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== SOCIAL SHARING ===== */
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        .copy-link { background: linear-gradient(45deg, #6c757d, #545b62); }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e6e6ff;
+            font-size: 0.9rem;
+        }
+
+        .footer-link {
+            color: #ffd700;
+            text-decoration: none;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-message {
+                font-size: 1.3rem;
+            }
+            
+            .festival-types {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .festival-title::before,
+            .festival-title::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-home">
+                <i class="fas fa-arrow-left"></i> Back to Wish Fountain Hub
+            </a>
+            <h1><span class="festival-title">Festival Wishes Generator</span></h1>
+            <p class="subtitle">Create beautiful festival wishes for Diwali, Eid, Christmas, Holi, and all celebrations!</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Festival Card</h2>
+                <div class="festival-card" id="festivalCard">
+                    <div class="festival-icon festival-icon1">🎊</div>
+                    <div class="festival-icon festival-icon2">✨</div>
+                    <div class="festival-icon festival-icon3">🎉</div>
+                    <div class="festival-icon festival-icon4">🌟</div>
+                    <h3 class="card-title" id="cardTitle">Happy Diwali!</h3>
+                    <p class="card-message" id="cardMessage">May the divine light of Diwali spread into your life peace, prosperity, happiness and good health. Wishing you and your family a very Happy Diwali!</p>
+                    <p class="card-sender" id="cardSender">With festive greetings, Your Name</p>
+                </div>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Select Festival</h3>
+                    <div class="festival-types" id="festivalTypes">
+                        <!-- Festival buttons will be loaded by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <!-- Design buttons will be loaded by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Custom Message</h3>
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom festival message here..." rows="4"></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With festive wishes, Family Name)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Edit Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Wishes
+                    </button>
+                </div>
+                
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn telegram" id="telegramBtn">
+                            <i class="fab fa-telegram"></i> Telegram
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#ffd700;"></i> for festivals | Spread joy and celebrations</p>
+            <a href="index.html" class="footer-link">
+                <i class="fas fa-home"></i> Back to Wish Fountain Hub
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        // Festival data
+        const festivals = [
+            { name: "Diwali", icon: "🪔", color: "#ffd700" },
+            { name: "Eid", icon: "🌙", color: "#2ecc71" },
+            { name: "Christmas", icon: "🎄", color: "#e74c3c" },
+            { name: "Holi", icon: "🎨", color: "#9b59b6" },
+            { name: "New Year", icon: "🎆", color: "#3498db" }
+        ];
+
+        // Festival messages
+        const festivalMessages = {
+            "Diwali": [
+                "May the divine light of Diwali spread into your life peace, prosperity, happiness and good health. Wishing you and your family a very Happy Diwali!",
+                "As you celebrate the festival of lights, may your life be filled with glowing moments of joy and laughter. Happy Diwali!",
+                "May this Diwali bring you endless blessings, prosperity, and joy. Wishing you a sparkling celebration with your loved ones!"
+            ],
+            "Eid": [
+                "Eid Mubarak! May Allah bless you with happiness, peace, and prosperity. May this special day bring joy to you and your family.",
+                "On this blessed occasion of Eid, may your life be filled with happiness, your heart with love, and your soul with spirituality. Eid Mubarak!",
+                "Wishing you and your family a joyful Eid filled with peace, prosperity, and countless blessings. Eid Mubarak!"
+            ],
+            "Christmas": [
+                "May the magic of Christmas fill your heart with joy, your home with love, and your life with laughter. Merry Christmas!",
+                "Wishing you peace, joy, and all the best this wonderful holiday can bring. Merry Christmas and Happy New Year!",
+                "May your Christmas be decorated with cheer, wrapped in love, and filled with the warmth of family and friends."
+            ],
+            "Holi": [
+                "May your life be filled with vibrant colors of joy, happiness, and success. Wishing you a very Happy Holi!",
+                "Let the colors of Holi spread the message of peace, happiness, and harmony. Have a colorful and safe Holi celebration!",
+                "May this Holi bring colors of joy, happiness, and prosperity to your life. Play safe and enjoy the festival of colors!"
+            ],
+            "New Year": [
+                "May the new year bring you happiness, peace, and prosperity. Wishing you a joyous year ahead filled with success!",
+                "As the new year begins, may it bring fresh hopes, renewed dreams, and brighter opportunities. Happy New Year!",
+                "Cheers to a new year and another chance for us to get it right. Wishing you health, happiness, and peace in the coming year."
+            ]
+        };
+
+        // DOM Elements
+        const festivalCard = document.getElementById('festivalCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const festivalTypesContainer = document.getElementById('festivalTypes');
+        const cardDesignsContainer = document.getElementById('cardDesigns');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+
+        // Initialize Festival Buttons
+        festivals.forEach((festival, index) => {
+            const button = document.createElement('button');
+            button.className = 'festival-btn';
+            button.innerHTML = `<span>${festival.icon}</span><span>${festival.name}</span>`;
+            button.style.borderColor = festival.color;
+            
+            button.addEventListener('click', () => {
+                // Update card
+                cardTitle.textContent = `Happy ${festival.name}!`;
+                
+                // Get random message
+                const messages = festivalMessages[festival.name] || festivalMessages["Diwali"];
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                cardMessage.textContent = randomMessage;
+                
+                // Reset custom message
+                customMessage.value = '';
+                
+                // Show visual feedback
+                button.style.background = festival.color + '40';
+                setTimeout(() => {
+                    button.style.background = '';
+                }, 300);
+            });
+            
+            festivalTypesContainer.appendChild(button);
+            
+            // Auto-select first festival
+            if (index === 0) {
+                button.click();
+            }
+        });
+
+        // Initialize Design Buttons
+        for (let i = 1; i <= 10; i++) {
+            const button = document.createElement('button');
+            button.className = `design-btn color${i}`;
+            button.title = `Design ${i}`;
+            
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.design-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Apply gradient
+                const gradients = [
+                    ['#6a11cb', '#2575fc'],
+                    ['#ff416c', '#ff4b2b'],
+                    ['#11998e', '#38ef7d'],
+                    ['#f46b45', '#eea849'],
+                    ['#834d9b', '#d04ed6'],
+                    ['#0052d4', '#4364f7'],
+                    ['#654ea3', '#da98b4'],
+                    ['#f7971e', '#ffd200'],
+                    ['#3a7bd5', '#00d2ff'],
+                    ['#8e2de2', '#4a00e0']
+                ];
+                
+                const colors = gradients[i - 1];
+                festivalCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+            });
+            
+            cardDesignsContainer.appendChild(button);
+            
+            // Auto-select first design
+            if (i === 1) {
+                button.classList.add('active');
+            }
+        }
+
+        // Custom Message Input
+        customMessage.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                cardMessage.textContent = this.value;
+            }
+        });
+
+        // Sender Name Input
+        senderName.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                cardSender.textContent = `With festive greetings, ${this.value}`;
+            } else {
+                cardSender.textContent = 'With festive greetings, Your Name';
+            }
+        });
+
+        // Edit Button
+        document.getElementById('editBtn').addEventListener('click', function() {
+            customMessage.focus();
+            customMessage.style.boxShadow = '0 0 0 2px #ffd700';
+            setTimeout(() => {
+                customMessage.style.boxShadow = '';
+            }, 1000);
+        });
+
+        // Send Button
+        document.getElementById('sendBtn').addEventListener('click', function() {
+            const recipient = prompt("Who would you like to send these festival wishes to?");
+            if (recipient) {
+                const originalMessage = cardMessage.textContent;
+                const personalizedMessage = `Dear ${recipient},\n\n${originalMessage}\n\n${cardSender.textContent}`;
+                
+                cardMessage.textContent = personalizedMessage;
+                
+                // Reset after 5 seconds
+                setTimeout(() => {
+                    cardMessage.textContent = originalMessage;
+                }, 5000);
+            }
+        });
+
+        // Social Sharing Buttons
+        document.getElementById('whatsappBtn').addEventListener('click', function() {
+            const text = `${cardTitle.textContent}\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Wish Fountain Festival Generator`;
+            const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', function() {
+            const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://wishfountain.site')}`;
+            window.open(url, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', function() {
+            const text = `${cardTitle.textContent} - ${cardMessage.textContent.substring(0, 100)}...`;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://wishfountain.site')}`;
+            window.open(url, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', function() {
+            alert('To share on Instagram:\n1. Take a screenshot of your card\n2. Open Instagram\n3. Post it as a story with #FestivalWishes');
+        });
+
+        document.getElementById('telegramBtn').addEventListener('click', function() {
+            const text = `${cardTitle.textContent}\n\n${cardMessage.textContent}\n\n${cardSender.textContent}`;
+            const url = `https://t.me/share/url?url=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', function() {
+            const subject = encodeURIComponent(cardTitle.textContent);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Wish Fountain Festival Generator`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // Initialize
+        console.log('Festival Wishes Generator loaded successfully!');
+    </script>
+</body>
+</html>
