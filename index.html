@@ -503,8 +503,8 @@
                     <a href="wedding-wishes.html" style="display: block; margin: 10px 0; color: #00ff7f;">Wedding Wishes Generator</a>
                     
                     <h3>Festival & Holiday Generators</h3>
-                    <a href="christmas-wishes-generator.html" style="display: block; margin: 10px 0; color: #00ff7f;">Christmas Wishes Generator</a>
-                    <a href="new-year-wishes-generator.html" style="display: block; margin: 10px 0; color: #00ff7f;">New Year Wishes Generator</a>
+                    <a href="christmas-card.html" style="display: block; margin: 10px 0; color: #00ff7f;">Christmas Wishes Generator</a>
+                    <a href="newyear-wish-fountain-generator.html" style="display: block; margin: 10px 0; color: #00ff7f;">New Year Wishes Generator</a>
                     <a href="festival-wishes-generator.html" style="display: block; margin: 10px 0; color: #00ff7f;">Festival Wishes Generator</a>
                 </div>
             </noscript>
@@ -531,8 +531,8 @@
             <div class="footer-section">
                 <h3>Popular Generators</h3>
                 <a href="birthday-wishes-generator.html">Birthday Wishes</a>
-                <a href="christmas-wishes-generator.html">Christmas Wishes</a>
-                <a href="new-year-wishes-generator.html">New Year Wishes</a>
+                <a href="christmas-card.html">Christmas Wishes</a>
+                <a href="newyear-wish-fountain-generator.html">New Year Wishes</a>
                 <a href="thank-you-wishes.html">Thank You Wishes</a>
                 <a href="get-well-soon-wishes.html">Get Well Soon Wishes</a>
             </div>
@@ -576,8 +576,8 @@
         // ===== TOOLS DATA =====
         const tools = [
             {name: "Birthday Wishes Generator", file: "birthday-wishes-generator.html", cat: "birthday", badge: "🔥 Trending"},
-            {name: "Christmas Wishes Generator", file: "christmas-wishes-generator.html", cat: "event", badge: "🎄 Festive"},
-            {name: "New Year Wishes Generator", file: "new-year-wishes-generator.html", cat: "event", badge: "🎆 Popular"},
+            {name: "Christmas Wishes Generator", file: "christmas-card.html", cat: "event", badge: "🎄 Festive"},
+            {name: "New Year Wishes Generator", file: "newyear-wish-fountain-generator.html", cat: "event", badge: "🎆 Popular"},
             {name: "Thank You Wishes Generator", file: "thank-you-wishes.html", cat: "event", badge: "🙏 Gratitude"},
             {name: "Get Well Soon Wishes Generator", file: "get-well-soon-wishes.html", cat: "event", badge: "🤒 Healing"},
             {name: "Anniversary Wishes Generator", file: "anniversary-wishes-generator-pro.html", cat: "event", badge: "❤️ Popular"},
@@ -667,17 +667,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             createSnow();
             renderTools(tools);
-            
-            // Add error handling for links
-            document.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    if (href && href.includes('#')) {
-                        // Allow anchor links
-                        return true;
-                    }
-                });
-            });
         });
 
         // ===== ERROR HANDLING =====
