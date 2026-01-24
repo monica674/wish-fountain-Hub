@@ -403,7 +403,7 @@
             }
         }
 
-        /* ===== SIMPLE SNOW EFFECT ===== */
+        /* ===== ENHANCED SNOW EFFECT ===== */
         .snow-container {
             position: fixed;
             top: 0;
@@ -421,21 +421,54 @@
             font-size: 1rem;
             opacity: 0.7;
             animation: fall linear infinite;
+            text-shadow: 0 0 5px #00ff7f, 0 0 10px #00ff7f;
+        }
+
+        .snowflake-effect.fast {
+            animation-duration: 5s;
+            opacity: 0.9;
+        }
+
+        .snowflake-effect.medium {
+            animation-duration: 10s;
+            opacity: 0.7;
+        }
+
+        .snowflake-effect.slow {
+            animation-duration: 15s;
+            opacity: 0.5;
         }
 
         @keyframes fall {
             0% {
-                transform: translateY(-100px) rotate(0deg);
+                transform: translateY(-100px) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
             }
             100% {
-                transform: translateY(100vh) rotate(360deg);
+                transform: translateY(100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes drift {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(50px);
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- SIMPLE SNOW EFFECT -->
+    <!-- ENHANCED SNOW EFFECT -->
     <div class="snow-container" id="snowContainer"></div>
 
     <!-- NAVIGATION -->
@@ -554,21 +587,31 @@
 
     <!-- ✅ SIMPLIFIED, ERROR-FREE JAVASCRIPT -->
     <script>
-        // ===== SNOW EFFECT =====
+        // ===== ENHANCED SNOW EFFECT =====
         function createSnow() {
             const container = document.getElementById('snowContainer');
-            const snowCount = 40; // Reduced for performance
+            const snowCount = 100; // Increased for more snowfall
             
             for (let i = 0; i < snowCount; i++) {
                 const snowflake = document.createElement('div');
                 snowflake.className = 'snowflake-effect';
                 snowflake.innerHTML = '❄';
                 
+                // Random position
                 snowflake.style.left = Math.random() * 100 + '%';
-                snowflake.style.animationDuration = (8 + Math.random() * 12) + 's';
-                snowflake.style.animationDelay = Math.random() * 5 + 's';
-                snowflake.style.fontSize = (8 + Math.random() * 10) + 'px';
-                snowflake.style.opacity = 0.3 + Math.random() * 0.4;
+                
+                // Random speed classes
+                const speedClass = ['fast', 'medium', 'slow'][Math.floor(Math.random() * 3)];
+                snowflake.classList.add(speedClass);
+                
+                // Random animation properties
+                snowflake.style.animationDuration = (5 + Math.random() * 15) + 's';
+                snowflake.style.animationDelay = Math.random() * 10 + 's';
+                snowflake.style.fontSize = (8 + Math.random() * 15) + 'px';
+                snowflake.style.opacity = 0.3 + Math.random() * 0.6;
+                
+                // Random drift effect
+                snowflake.style.animation = `fall ${5 + Math.random() * 15}s linear ${Math.random() * 5}s infinite, drift ${3 + Math.random() * 7}s ease-in-out ${Math.random() * 3}s infinite alternate`;
                 
                 container.appendChild(snowflake);
             }
@@ -583,7 +626,7 @@
             {name: "Get Well Soon Wishes Generator", file: "get-well-soon-wishes.html", cat: "event", badge: "🤒 Healing"},
             {name: "Anniversary Wishes Generator", file: "anniversary-wishes-generator-pro.html", cat: "event", badge: "❤️ Popular"},
             {name: "Wedding Wishes Generator", file: "wedding-wishes.html", cat: "event", badge: "💒 Popular"},
-            {name: "Festival Wishes Generator", file: "Festival Wishes Generator | Wish Fountain Hub", cat: "festival", badge: "🎊 New"}
+            {name: "Festival Wishes Generator", file: "festival-wishes-generator-pro.html", cat: "festival", badge: "🎊 New"}
         ];
 
         // ===== RENDER TOOLS =====
@@ -666,9 +709,20 @@
             }
         });
 
+        // ===== CREATE FESTIVAL WISHES GENERATOR FILE =====
+        function checkAndCreateFestivalFile() {
+            // Check if festival file exists in the tools array
+            const festivalTool = tools.find(tool => tool.name === "Festival Wishes Generator");
+            if (festivalTool && festivalTool.file === "festival-wishes-generator-pro.html") {
+                console.log("Festival Wishes Generator file should be created: festival-wishes-generator-pro.html");
+                // You need to create this file manually or through your deployment process
+            }
+        }
+
         // ===== INITIALIZE =====
         document.addEventListener('DOMContentLoaded', () => {
             createSnow();
+            checkAndCreateFestivalFile();
             
             // Google Analytics - Load only after page is ready
             if (typeof gtag !== 'undefined') {
