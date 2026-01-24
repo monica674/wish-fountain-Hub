@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /wp-admin/
+
+Sitemap: https://wishfountain.site/sitemap.xml
+Crawl-delay: 1
