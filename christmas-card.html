@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Christmas Card Maker</title>
+    
+    <!-- ALL CSS IS EMBEDDED - NO EXTERNAL LINKS -->
+    <style>
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background: linear-gradient(135deg, #0a2810, #1a472a, #0f3d1e);
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            padding: 15px;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* SNOWFLAKES */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            font-size: 1.2em;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* SECTIONS */
+        .section { display: none; max-width: 900px; margin: 0 auto; }
+        .section.active { display: block; }
+
+        /* HEADER */
+        header {
+            margin: 15px auto 25px;
+            padding: 20px;
+            background: rgba(220, 20, 60, 0.15);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            color: #FFD700;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        /* THEME & DESIGN */
+        .theme-selection, .design-selection {
+            margin: 20px auto;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .theme-selection h2, .design-selection h2 {
+            color: #DC143C;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .theme-options, .design-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .theme-option, .design-option {
+            flex: 1;
+            min-width: 140px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .theme-option:hover, .design-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-option.selected, .design-option.selected {
+            border-color: #DC143C;
+            background: rgba(220, 20, 60, 0.2);
+        }
+
+        .theme-icon, .design-preview {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* CONTROLS */
+        .controls {
+            background: rgba(255, 255, 255, 0.08);
+            margin: 0 auto 20px;
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            align-items: flex-end;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .input-group {
+            flex: 1;
+            min-width: 200px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #DC143C;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        input, select {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border: 2px solid rgba(220, 20, 60, 0.3);
+        }
+
+        .action-btn {
+            background: linear-gradient(45deg, #DC143C, #B22222);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 15px auto 0;
+            max-width: 300px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1rem;
+            border-radius: 12px;
+            padding: 14px 25px;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+            border: none;
+        }
+
+        /* WISHES */
+        .wish-selection {
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .wish-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .wish-item.selected {
+            background: rgba(220, 20, 60, 0.15);
+            border-color: #DC143C;
+        }
+
+        /* CARD */
+        .card-container {
+            height: 400px;
+            margin: 0 auto 20px;
+            perspective: 1000px;
+            position: relative;
+            max-width: 800px;
+        }
+
+        .christmas-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.7s;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .card-open .christmas-card { transform: rotateY(180deg); }
+
+        .card-front, .card-inside {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #DC143C, #B22222);
+        }
+
+        .card-inside {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #0a2810, #1a472a);
+        }
+
+        .christmas-title {
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .theme-badge {
+            background: linear-gradient(45deg, #FFD700, #DC143C);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .card-message {
+            font-size: 1.2rem;
+            line-height: 1.4;
+            text-align: center;
+            margin: 0 15px;
+            min-height: 80px;
+            color: white;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            max-width: 700px;
+        }
+
+        .sender-name {
+            margin-top: 20px;
+            color: #FFD700;
+            font-size: 1.1rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        .flip-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            z-index: 50;
+            font-size: 1.1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* SHARING */
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 15px auto;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp { background: #25D366; }
+        .copy-link { background: #6c757d; }
+
+        .create-new-btn {
+            background: linear-gradient(45deg, #DC143C, #B22222);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 15px auto 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        footer {
+            margin-top: 25px;
+            padding: 15px;
+            color: #FFD700;
+            font-size: 0.85rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .card-container { height: 350px; }
+            .christmas-title { font-size: 2rem; }
+            .card-message { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="snowflakes" id="snowflakes"></div>
+
+    <!-- GENERATOR SECTION -->
+    <div class="section active" id="generatorSection">
+        <header>
+            <h1>🎄 Christmas Card Maker</h1>
+            <p class="tagline">Create → Personalize → Share</p>
+        </header>
+
+        <div class="theme-selection">
+            <h2>Select Theme</h2>
+            <div class="theme-options">
+                <div class="theme-option selected" onclick="selectTheme('santa')">
+                    <div class="theme-icon">🎅</div>
+                    <div>Santa</div>
+                </div>
+                <div class="theme-option" onclick="selectTheme('tree')">
+                    <div class="theme-icon">🎄</div>
+                    <div>Tree</div>
+                </div>
+                <div class="theme-option" onclick="selectTheme('snow')">
+                    <div class="theme-icon">❄️</div>
+                    <div>Snow</div>
+                </div>
+                <div class="theme-option" onclick="selectTheme('star')">
+                    <div class="theme-icon">⭐</div>
+                    <div>Star</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="input-group">
+                <label>To:</label>
+                <input type="text" id="recipientName" placeholder="Recipient's name">
+            </div>
+            <div class="input-group">
+                <label>From:</label>
+                <input type="text" id="senderName" placeholder="Your name" value="Santa">
+            </div>
+            <div class="input-group">
+                <label>Language:</label>
+                <select id="langSelect">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="wish-selection">
+            <h2>Choose a Wish</h2>
+            <div id="wishList"></div>
+        </div>
+
+        <button class="action-btn" onclick="generateAndShowCard()">
+            🎁 Create Card
+        </button>
+    </div>
+
+    <!-- CARD VIEW -->
+    <div class="section" id="cardViewSection">
+        <div class="card-container" id="cardContainer">
+            <div class="christmas-card">
+                <div class="card-front" id="cardFront">
+                    <h2 class="christmas-title" id="cardTitle">Merry Christmas</h2>
+                    <div class="theme-badge" id="themeBadge">Santa Theme</div>
+                    <p class="card-message" id="cardMessage">Your wish here</p>
+                    <p class="sender-name" id="cardSender"></p>
+                </div>
+                <div class="card-inside">
+                    <h2 class="christmas-title">Merry Christmas!</h2>
+                    <div class="theme-badge" id="insideThemeBadge">Santa Theme</div>
+                    <p class="card-message" id="cardInsideMessage">Wish message</p>
+                    <p class="sender-name">From: <span id="cardInsideSender"></span></p>
+                </div>
+            </div>
+            <button class="flip-btn" onclick="flipCard()">🔄</button>
+        </div>
+
+        <div class="share-buttons">
+            <button class="share-btn whatsapp" onclick="shareOnWhatsApp()">📱</button>
+            <button class="share-btn copy-link" onclick="copyCardLink()">📋</button>
+        </div>
+
+        <button class="create-new-btn" onclick="goToGenerator()">
+            ➕ New Card
+        </button>
+    </div>
+
+    <footer>
+        <p>© <span id="currentYear">2024</span> Christmas Card Maker</p>
+    </footer>
+
+    <!-- ALL JAVASCRIPT EMBEDDED - NO EXTERNAL SCRIPTS -->
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        const wishes = {
+            en: {
+                santa: [
+                    "Merry Christmas {name}! May Santa bring you joy. 🎅",
+                    "Wishing you a magical Christmas {name}! 🎄",
+                    "Ho ho ho! Merry Christmas {name}! 🎁",
+                    "May your stockings be filled with joy {name}! 🧦"
+                ],
+                tree: [
+                    "Merry Christmas {name}! May your tree shine bright. 🎄",
+                    "Wishing you a beautiful Christmas {name}! 🌟",
+                    "May your Christmas be filled with love {name}! 💖"
+                ],
+                snow: [
+                    "Merry Christmas {name}! Wishing you peace. ❄️",
+                    "May your holidays be beautiful {name}! ☃️",
+                    "Wishing you a white Christmas {name}! ⛄"
+                ],
+                star: [
+                    "Merry Christmas {name}! May the star guide you. ⭐",
+                    "Wishing you a shining Christmas {name}! ✨",
+                    "May your Christmas be bright {name}! 💫"
+                ]
+            },
+            es: {
+                santa: [
+                    "¡Feliz Navidad {name}! Que Papá Noel te traiga alegría. 🎅",
+                    "¡Te deseo una Navidad mágica {name}! 🎄"
+                ],
+                tree: [
+                    "¡Feliz Navidad {name}! Que tu árbol brille. 🎄",
+                    "¡Que tengas una Navidad hermosa {name}! 🌟"
+                ]
+            },
+            fr: {
+                santa: [
+                    "Joyeux Noël {name}! Que le Père Noël t'apporte de la joie. 🎅",
+                    "Je te souhaite un Noël magique {name}! 🎄"
+                ],
+                tree: [
+                    "Joyeux Noël {name}! Que ton sapin brille. 🎄",
+                    "Je te souhaite un beau Noël {name}! 🌟"
+                ]
+            }
+        };
+
+        let selectedWishIndex = 0;
+        let currentLang = "en";
+        let currentTheme = "santa";
+        let currentRecipient = "";
+        let currentSender = "";
+
+        function createSnowflakes(count = 25) {
+            const container = document.getElementById('snowflakes');
+            for (let i = 0; i < count; i++) {
+                const flake = document.createElement('div');
+                flake.className = 'snowflake';
+                flake.innerHTML = '❄';
+                flake.style.left = Math.random() * 100 + '%';
+                flake.style.animationDuration = (5 + Math.random() * 10) + 's';
+                flake.style.animationDelay = Math.random() * 5 + 's';
+                flake.style.fontSize = (6 + Math.random() * 8) + 'px';
+                flake.style.opacity = 0.4 + Math.random() * 0.4;
+                container.appendChild(flake);
+            }
+        }
+
+        function loadWishes() {
+            const wishList = document.getElementById('wishList');
+            const lang = document.getElementById('langSelect').value;
+            currentLang = lang;
+            
+            wishList.innerHTML = '';
+            const themeWishes = wishes[lang]?.[currentTheme] || wishes.en[currentTheme] || ["Merry Christmas {name}! 🎄"];
+            
+            themeWishes.forEach((wish, index) => {
+                const item = document.createElement('div');
+                item.className = 'wish-item' + (index === selectedWishIndex ? ' selected' : '');
+                item.innerHTML = wish.replace('{name}', 'Friend');
+                item.onclick = () => selectWish(index);
+                wishList.appendChild(item);
+            });
+        }
+
+        function selectWish(index) {
+            selectedWishIndex = index;
+            document.querySelectorAll('.wish-item').forEach((item, i) => {
+                item.classList.toggle('selected', i === index);
+            });
+        }
+
+        function selectTheme(theme) {
+            currentTheme = theme;
+            document.querySelectorAll('.theme-option').forEach(opt => opt.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+            loadWishes();
+        }
+
+        function generateAndShowCard() {
+            const recipient = document.getElementById('recipientName').value.trim();
+            const sender = document.getElementById('senderName').value.trim();
+            
+            if (!recipient) {
+                alert("Please enter recipient's name!");
+                return;
+            }
+            
+            currentRecipient = recipient;
+            currentSender = sender || "Santa";
+            currentLang = document.getElementById('langSelect').value;
+            
+            const wish = wishes[currentLang]?.[currentTheme]?.[selectedWishIndex] || 
+                        wishes.en[currentTheme]?.[selectedWishIndex] || 
+                        "Merry Christmas {name}! 🎄";
+            
+            document.getElementById('cardTitle').textContent = 
+                currentLang === 'en' ? 'Merry Christmas' : 
+                currentLang === 'es' ? 'Feliz Navidad' : 'Joyeux Noël';
+            
+            document.getElementById('themeBadge').textContent = currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1) + ' Theme';
+            document.getElementById('cardMessage').textContent = wish.replace('{name}', recipient);
+            document.getElementById('cardSender').textContent = `From: ${currentSender}`;
+            
+            document.getElementById('insideThemeBadge').textContent = currentTheme.charAt(0).toUpperCase() + currentTheme.slice(1) + ' Theme';
+            document.getElementById('cardInsideMessage').textContent = wish.replace('{name}', recipient);
+            document.getElementById('cardInsideSender').textContent = currentSender;
+            
+            showSection('cardView');
+        }
+
+        function showSection(name) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(name + 'Section').classList.add('active');
+        }
+
+        function goToGenerator() {
+            document.getElementById('cardContainer').classList.remove('card-open');
+            showSection('generator');
+            loadWishes();
+        }
+
+        function flipCard() {
+            document.getElementById('cardContainer').classList.toggle('card-open');
+        }
+
+        function shareOnWhatsApp() {
+            if (!currentRecipient) return;
+            const wish = wishes[currentLang]?.[currentTheme]?.[selectedWishIndex] || "Merry Christmas! 🎄";
+            const message = `🎄 Christmas Card for ${currentRecipient} 🎄\n\n${wish.replace('{name}', currentRecipient)}\n\nFrom: ${currentSender}\n\nCreated with Christmas Card Maker`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function copyCardLink() {
+            alert("Card created! Share via WhatsApp or take a screenshot.");
+        }
+
+        document.getElementById('langSelect').addEventListener('change', () => {
+            selectedWishIndex = 0;
+            loadWishes();
+        });
+
+        // Initialize
+        createSnowflakes();
+        loadWishes();
+    </script>
+</body>
+</html>
