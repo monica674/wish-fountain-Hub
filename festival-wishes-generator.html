@@ -3,14 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval';
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+        font-src 'self' data: https: blob: https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+        img-src 'self' data: https: blob:;
+        worker-src 'self' blob:;
+    ">
     <title>Wish Fountain - Festival Wishes Generator</title>
+    <meta name="description" content="Create beautiful festival wishes for Diwali, Eid, Christmas, Holi and all celebrations. Free online festival wishes generator.">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
         
         body {
@@ -451,6 +463,22 @@
             to { transform: translateX(100%); opacity: 0; }
         }
         
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
         @media (max-width: 768px) {
             .app-container {
                 flex-direction: column;
@@ -503,6 +531,9 @@
 <body>
     <div class="container">
         <header>
+            <a href="index.html" class="back-home">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
             <h1><span class="festival-title">Wish Fountain - Festival Wishes Generator</span></h1>
             <p class="subtitle">Create beautiful festival wishes for Diwali, Eid, Christmas, Holi, and all celebrations!</p>
         </header>
@@ -593,6 +624,7 @@
         
         <footer>
             <p>Made with <i class="fas fa-heart" style="color:#ffd700;"></i> for festivals | Spread joy and celebrations</p>
+            <p><a href="index.html" style="color: #ffd700; text-decoration: none;">← Back to Wish Fountain Hub</a></p>
         </footer>
     </div>
 
@@ -624,15 +656,10 @@
                 "As the new year begins, may it bring fresh hopes, renewed dreams, and brighter opportunities. Happy New Year!",
                 "Cheers to a new year and another chance for us to get it right. Wishing you health, happiness, and peace in the coming year."
             ],
-            easter: [
-                "May the joy and blessings of Easter be with you today and always. Wishing you a blessed and happy Easter!",
-                "May your Easter be filled with hope, joy, and the love of family and friends. Happy Easter!",
-                "Wishing you peace, joy, and renewal this Easter season. May your heart be filled with hope and happiness."
-            ],
-            thanksgiving: [
-                "Wishing you a Thanksgiving filled with joy, laughter, and the love of family and friends. Happy Thanksgiving!",
-                "May your Thanksgiving be blessed with good food, great company, and thankful hearts. Happy Thanksgiving!",
-                "On this day of thanks, may you be surrounded by loved ones and blessed with abundance. Happy Thanksgiving!"
+            general: [
+                "Wishing you a festival filled with joy, laughter, and beautiful memories. May this celebration bring you closer to your loved ones!",
+                "May the festive season fill your home with joy, your heart with love, and your life with laughter. Happy celebrations!",
+                "Sending you warm wishes for a festival filled with good times and great memories. Enjoy every moment!"
             ]
         };
 
@@ -643,8 +670,6 @@
             { name: "Christmas", icon: "🎄", color: "#e74c3c", key: "christmas" },
             { name: "Holi", icon: "🎨", color: "#9b59b6", key: "holi" },
             { name: "New Year", icon: "🎆", color: "#3498db", key: "newyear" },
-            { name: "Easter", icon: "🐰", color: "#f1c40f", key: "easter" },
-            { name: "Thanksgiving", icon: "🦃", color: "#e67e22", key: "thanksgiving" },
             { name: "General", icon: "🎊", color: "#1abc9c", key: "general" }
         ];
 
@@ -685,7 +710,7 @@
             const festivalButton = document.createElement('button');
             festivalButton.className = 'festival-btn';
             festivalButton.innerHTML = `
-                <i>${festival.icon}</i>
+                <span style="font-size: 1.5rem;">${festival.icon}</span>
                 <span>${festival.name}</span>
             `;
             festivalButton.style.borderColor = festival.color;
@@ -703,12 +728,15 @@
                 cardTitle.textContent = `Happy ${festival.name}!`;
                 
                 // Get random message for this festival
-                const messages = festivalMessages[festival.key] || festivalMessages.diwali;
+                const messages = festivalMessages[festival.key] || festivalMessages.general;
                 const randomMessage = messages[Math.floor(Math.random() * messages.length)];
                 cardMessage.textContent = randomMessage;
                 
                 // Reset custom message
                 customMessage.value = '';
+                
+                // Show notification
+                showNotification(`Selected ${festival.name} wishes!`);
             });
             
             festivalTypesContainer.appendChild(festivalButton);
@@ -727,6 +755,7 @@
                 });
                 designButton.classList.add('active');
                 applyCardDesign(design.className);
+                showNotification(`Applied ${design.name} design!`);
             });
             
             cardDesignsContainer.appendChild(designButton);
@@ -962,34 +991,6 @@
             }, 3000);
         }
 
-        // Load card from URL if present
-        function loadCardFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const cardDataParam = urlParams.get('card');
-            
-            if (cardDataParam) {
-                try {
-                    const cardData = JSON.parse(decodeURIComponent(cardDataParam));
-                    cardTitle.textContent = cardData.title || cardTitle.textContent;
-                    cardMessage.textContent = cardData.message || cardMessage.textContent;
-                    cardSender.textContent = cardData.sender || cardSender.textContent;
-                    
-                    if (cardData.design) {
-                        const designButton = document.querySelector(`.${cardData.design}`);
-                        if (designButton) {
-                            designButton.click();
-                        }
-                    }
-                    
-                    showNotification('🎊 Festival card loaded successfully!');
-                } catch (e) {
-                    console.error('Error loading card data:', e);
-                }
-            }
-        }
-        
-        loadCardFromURL();
-        
         // Initialize with Diwali message
         const randomDiwaliMessage = festivalMessages.diwali[Math.floor(Math.random() * festivalMessages.diwali.length)];
         cardMessage.textContent = randomDiwaliMessage;
@@ -998,6 +999,11 @@
         setTimeout(() => {
             showNotification('🎊 Welcome to Festival Wishes Generator! Create beautiful wishes for all celebrations!');
         }, 1500);
+        
+        // Auto-select first festival button
+        if (festivalTypesContainer.firstChild) {
+            festivalTypesContainer.firstChild.click();
+        }
     </script>
 </body>
 </html>
