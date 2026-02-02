@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wish Fountain - Congratulations Card Creator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 30%, #f093fb 70%, #f5576c 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .celebration-title {
+            color: #FFD700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .celebration-title::before, .celebration-title::after {
+            content: '🎉';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+        }
+        
+        .celebration-title::before {
+            right: -45px;
+        }
+        
+        .celebration-title::after {
+            left: -45px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #FFEAA7;
+            margin-bottom: 20px;
+        }
+        
+        .app-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .card-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .controls-container {
+            flex: 1;
+            min-width: 300px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .congrats-card {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(145deg, #6a11cb 0%, #2575fc 100%);
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.2), 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 5px solid #FFD700;
+        }
+        
+        .celebration-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.8;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .celebration-icon1 { top: 20px; left: 20px; color: #FFD700; animation-delay: 0s; }
+        .celebration-icon2 { top: 20px; right: 20px; color: #FF6B6B; animation-delay: 0.5s; }
+        .celebration-icon3 { bottom: 20px; left: 20px; color: #4ECDC4; animation-delay: 1s; }
+        .celebration-icon4 { bottom: 20px; right: 20px; color: #FFEAA7; animation-delay: 1.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 20;
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .card-message {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 0 20px;
+            color: white;
+            z-index: 20;
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-sender {
+            font-size: 1.2rem;
+            color: #FFEAA7;
+            margin-top: 20px;
+            font-style: italic;
+            font-weight: bold;
+            z-index: 20;
+            position: relative;
+            background: rgba(255, 215, 0, 0.2);
+            padding: 12px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .card-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 107, 107, 0.1) 0%, transparent 20%);
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .auto-wishes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .wish-btn {
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            color: #FFEAA7;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .wish-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+        
+        .card-designs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .design-btn {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .design-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .design-btn.active {
+            border-color: #FFD700;
+            box-shadow: 0 0 15px #FFD700;
+        }
+        
+        .color1 { background: linear-gradient(45deg, #6a11cb, #2575fc); }
+        .color2 { background: linear-gradient(45deg, #ff6b6b, #ffa8a8); }
+        .color3 { background: linear-gradient(45deg, #4ECDC4, #44A08D); }
+        .color4 { background: linear-gradient(45deg, #FFD700, #FFEAA7); }
+        .color5 { background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); }
+        .color6 { background: linear-gradient(45deg, #00b09b, #96c93d); }
+        .color7 { background: linear-gradient(45deg, #654ea3, #da98b4); }
+        .color8 { background: linear-gradient(45deg, #FF9A9E, #FAD0C4); }
+        .color9 { background: linear-gradient(45deg, #A18CD1, #FBC2EB); }
+        .color10 { background: linear-gradient(45deg, #FFD194, #70E1F5); }
+        
+        .customize-section {
+            margin-bottom: 25px;
+        }
+        
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+        
+        .custom-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .edit-btn {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+        }
+        
+        .send-btn {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .social-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .social-btn {
+            padding: 14px 10px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            text-align: center;
+        }
+        
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .whatsapp-btn-social {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            grid-column: span 3;
+        }
+        
+        .facebook { background: linear-gradient(45deg, #3b5998, #2d4373); }
+        .twitter { background: linear-gradient(45deg, #1da1f2, #0d8bd9); }
+        .instagram { background: linear-gradient(45deg, #e1306c, #c13584); }
+        .copy-link { background: linear-gradient(45deg, #667eea, #764ba2); }
+        .telegram { background: linear-gradient(45deg, #0088cc, #006699); }
+        .email-btn { background: linear-gradient(45deg, #D44638, #B23121); }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            z-index: 100;
+            animation: confettiFall linear infinite;
+        }
+        
+        .sparkle {
+            position: absolute;
+            color: #FFD700;
+            font-size: 1.2rem;
+            pointer-events: none;
+            z-index: 100;
+            animation: sparkleTwinkle linear infinite;
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes sparkleTwinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .instruction {
+            background: rgba(255, 215, 0, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #FFD700;
+            font-size: 0.95rem;
+            color: #FFEAA7;
+        }
+        
+        .site-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .site-link:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFEAA7;
+            font-size: 0.9rem;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+            border: 2px solid #FFD700;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+        
+        @media (max-width: 768px) {
+            .app-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card-message {
+                font-size: 1.3rem;
+            }
+            
+            .auto-wishes {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .card-designs {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            
+            .social-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 2;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-btn-social {
+                grid-column: span 1;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="celebration-title">Congratulations Card Creator</span></h1>
+            <p class="subtitle">Design beautiful cards to celebrate achievements, milestones, and special moments</p>
+        </header>
+        
+        <div class="app-container">
+            <!-- Card Display Section -->
+            <div class="card-container">
+                <h2 class="section-title">Your Congratulations Card</h2>
+                <div class="congrats-card" id="congratsCard">
+                    <div class="celebration-icon celebration-icon1">🏆</div>
+                    <div class="celebration-icon celebration-icon2">🎊</div>
+                    <div class="celebration-icon celebration-icon3">✨</div>
+                    <div class="celebration-icon celebration-icon4">🥳</div>
+                    <div class="card-pattern"></div>
+                    <h3 class="card-title" id="cardTitle">Congratulations!</h3>
+                    <p class="card-message" id="cardMessage">Warmest congratulations on your outstanding achievement! Your dedication and perseverance have truly paid off. We're so proud of you!</p>
+                    <p class="card-sender" id="cardSender">With admiration, [Your Name]</p>
+                </div>
+                
+                <a href="https://wishfountain.site/congratulations/card/2024" class="site-link" id="siteLink">
+                    <i class="fas fa-link"></i> https://wishfountain.site/congratulations/card/<span id="cardId">1234</span>
+                </a>
+                
+                <p class="instruction">
+                    <i class="fas fa-info-circle"></i> Your congratulations card is ready! Customize it with different designs and messages, then share with one click.
+                </p>
+            </div>
+            
+            <!-- Controls Section -->
+            <div class="controls-container">
+                <h2 class="section-title">Customize Your Card</h2>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Congratulatory Messages</h3>
+                    <div class="auto-wishes" id="autoWishes">
+                        <!-- Auto wishes will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Card Designs</h3>
+                    <div class="card-designs" id="cardDesigns">
+                        <!-- Card design buttons will be inserted here by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="customize-section">
+                    <h3 class="section-title">Personalize Your Message</h3>
+                    <textarea class="custom-input" id="customMessage" placeholder="Type your custom congratulations message here..."></textarea>
+                    <input type="text" class="custom-input" id="senderName" placeholder="Your name (e.g., With pride, John)">
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn edit-btn" id="editBtn">
+                        <i class="fas fa-edit"></i> Customize Card
+                    </button>
+                    <button class="action-btn send-btn" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i> Send Congratulations
+                    </button>
+                </div>
+                
+                <!-- SOCIAL BUTTONS SECTION -->
+                <div class="social-section">
+                    <h3 class="section-title">Share Your Card</h3>
+                    <div class="social-buttons">
+                        <button class="social-btn whatsapp-btn-social" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </button>
+                        <button class="social-btn facebook" id="facebookBtn">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </button>
+                        <button class="social-btn twitter" id="twitterBtn">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </button>
+                        <button class="social-btn instagram" id="instagramBtn">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </button>
+                        <button class="social-btn copy-link" id="copyLinkBtn">
+                            <i class="fas fa-copy"></i> Copy Link
+                        </button>
+                        <button class="social-btn email-btn" id="emailBtn">
+                            <i class="fas fa-envelope"></i> Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Made with <i class="fas fa-heart" style="color:#FF6B6B;"></i> by Wish Fountain | Celebrate every success</p>
+        </footer>
+    </div>
+
+    <script>
+        // Congratulations messages (correctly spelled)
+        const autoWishes = [
+            "Warmest congratulations on your outstanding achievement! Your dedication and perseverance have truly paid off. We're so proud of you!",
+            "Congratulations on your well-deserved success! This is just the beginning of even greater accomplishments to come.",
+            "What an incredible achievement! Your talent and hard work have brought you this success. Heartiest congratulations!",
+            "So thrilled for you! Congratulations on reaching this important milestone. Wishing you continued success in all your endeavors.",
+            "Congratulations on your remarkable accomplishment! Your success is an inspiration to everyone who knows you.",
+            "Well done! Your achievement is a testament to your determination and effort. Congratulations on this wonderful success!",
+            "Congratulations! This is such fantastic news. Your success is truly deserved and hard-earned.",
+            "What wonderful news! Congratulations on your achievement. May this success open doors to even greater opportunities ahead.",
+            "Congratulations on this exceptional accomplishment! Your dedication and effort have clearly paid off beautifully.",
+            "So happy for you! Congratulations on your success. Wishing you all the best as you celebrate this achievement."
+        ];
+             
+        // Card designs with new color scheme
+        const cardDesigns = [
+            { name: "Royal Purple Blue", className: "color1" },
+            { name: "Coral Pink", className: "color2" },
+            { name: "Aqua Teal", className: "color3" },
+            { name: "Sunshine Gold", className: "color4" },
+            { name: "Instagram Gradient", className: "color5" },
+            { name: "Green Success", className: "color6" },
+            { name: "Lavender Dream", className: "color7" },
+            { name: "Peach Blush", className: "color8" },
+            { name: "Purple Haze", className: "color9" },
+            { name: "Sunset Orange", className: "color10" }
+        ];
+
+        // DOM elements
+        const congratsCard = document.getElementById('congratsCard');
+        const cardTitle = document.getElementById('cardTitle');
+        const cardMessage = document.getElementById('cardMessage');
+        const cardSender = document.getElementById('cardSender');
+        const autoWishesContainer = document.getElementById('autoWishes');
+        const cardDesignsContainer = document.getElementById('cardDesigns');
+        const customMessage = document.getElementById('customMessage');
+        const senderName = document.getElementById('senderName');
+        const siteLink = document.getElementById('siteLink');
+        const cardIdElement = document.getElementById('cardId');
+        
+        // Generate a unique card ID
+        const cardId = Math.floor(Math.random() * 9000) + 1000;
+        cardIdElement.textContent = cardId;
+        siteLink.href = `https://wishfountain.site/congratulations/card/${cardId}`;
+        siteLink.innerHTML = `<i class="fas fa-link"></i> https://wishfountain.site/congratulations/card/${cardId}`;
+        
+        // Initialize auto wishes buttons
+        autoWishes.forEach((wish, index) => {
+            const wishButton = document.createElement('button');
+            wishButton.className = 'wish-btn';
+            wishButton.textContent = `Message ${index + 1}`;
+            wishButton.addEventListener('click', () => {
+                cardMessage.textContent = wish;
+                // Reset custom message input
+                customMessage.value = '';
+            });
+            autoWishesContainer.appendChild(wishButton);
+        });
+
+        // Initialize card design buttons
+        cardDesigns.forEach((design, index) => {
+            const designButton = document.createElement('button');
+            designButton.className = `design-btn ${design.className}`;
+            designButton.title = design.name;
+            if (index === 0) designButton.classList.add('active');
+            
+            designButton.addEventListener('click', () => {
+                // Remove active class from all design buttons
+                document.querySelectorAll('.design-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                designButton.classList.add('active');
+                
+                // Change card background
+                applyCardDesign(design.className);
+            });
+            
+            cardDesignsContainer.appendChild(designButton);
+        });
+
+        // Function to apply card design
+        function applyCardDesign(designClass) {
+            // Map design classes to gradient colors
+            const gradients = {
+                'color1': ['#6a11cb', '#2575fc'],
+                'color2': ['#ff6b6b', '#ffa8a8'],
+                'color3': ['#4ECDC4', '#44A08D'],
+                'color4': ['#FFD700', '#FFEAA7'],
+                'color5': ['#833ab4', '#fd1d1d', '#fcb045'],
+                'color6': ['#00b09b', '#96c93d'],
+                'color7': ['#654ea3', '#da98b4'],
+                'color8': ['#FF9A9E', '#FAD0C4'],
+                'color9': ['#A18CD1', '#FBC2EB'],
+                'color10': ['#FFD194', '#70E1F5']
+            };
+            
+            const colors = gradients[designClass];
+            if (colors.length === 3) {
+                congratsCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 50%, ${colors[2]} 100%)`;
+            } else {
+                congratsCard.style.background = `linear-gradient(145deg, ${colors[0]} 0%, ${colors[1]} 100%)`;
+            }
+        }
+
+        // Custom message input event
+        customMessage.addEventListener('input', () => {
+            if (customMessage.value.trim() !== '') {
+                cardMessage.textContent = customMessage.value;
+            }
+        });
+
+        // Sender name input event
+        senderName.addEventListener('input', () => {
+            if (senderName.value.trim() !== '') {
+                cardSender.textContent = `With admiration, ${senderName.value}`;
+            } else {
+                cardSender.textContent = 'With admiration, [Your Name]';
+            }
+        });
+
+        // Edit button functionality
+        document.getElementById('editBtn').addEventListener('click', () => {
+            // Highlight the custom message field
+            customMessage.focus();
+            customMessage.style.border = '2px solid #FFD700';
+            customMessage.style.boxShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
+            
+            // Remove highlight after 2 seconds
+            setTimeout(() => {
+                customMessage.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                customMessage.style.boxShadow = 'none';
+            }, 2000);
+            
+            // Show notification
+            showNotification('You can now customize the card message and sender name');
+        });
+
+        // Send congratulations button functionality
+        document.getElementById('sendBtn').addEventListener('click', () => {
+            const recipient = prompt("Enter the achiever's name:");
+            const achievement = prompt("What are you congratulating them for? (e.g., graduation, promotion, award):");
+            
+            if (recipient) {
+                const originalSender = cardSender.textContent.replace('With admiration, ', '');
+                let personalizedMessage = `Dear ${recipient},\n\n`;
+                
+                if (achievement) {
+                    personalizedMessage += `Congratulations on your ${achievement}! `;
+                }
+                
+                personalizedMessage += cardMessage.textContent + `\n\n${cardSender.textContent}`;
+                
+                // Update card for preview
+                const originalMessage = cardMessage.textContent;
+                cardMessage.textContent = personalizedMessage;
+                cardSender.textContent = `To: ${recipient} | From: ${originalSender === '[Your Name]' ? 'A Proud Friend' : originalSender}`;
+                
+                // Update title for recipient
+                const originalTitle = cardTitle.textContent;
+                cardTitle.textContent = `Congratulations, ${recipient}!`;
+                
+                // Show success message
+                showNotification(`Congratulations card customized for ${recipient}! Now you can share it.`);
+                
+                // Create special celebration effect
+                createCelebrationEffect();
+                
+                // Revert after 10 seconds for preview
+                setTimeout(() => {
+                    cardMessage.textContent = originalMessage;
+                    cardSender.textContent = `With admiration, ${originalSender === '[Your Name]' ? '[Your Name]' : originalSender}`;
+                    cardTitle.textContent = originalTitle;
+                }, 10000);
+            }
+        });
+
+        // Share buttons functionality
+        document.getElementById('whatsappBtn').addEventListener('click', () => {
+            const message = `🎉 *${cardTitle.textContent}* 🎉\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreate your own congratulations card with Wish Fountain: ${window.location.href}`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/?text=${encodedMessage}`, '_blank');
+        });
+
+        document.getElementById('facebookBtn').addEventListener('click', () => {
+            const url = encodeURIComponent(window.location.href);
+            const quote = encodeURIComponent(`🎉 ${cardTitle.textContent} - Created with Wish Fountain Congratulations Card Creator`);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+        });
+
+        document.getElementById('twitterBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`🎉 ${cardTitle.textContent} - Send beautiful congratulations with @WishFountain`);
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        });
+
+        document.getElementById('instagramBtn').addEventListener('click', () => {
+            showNotification('To share on Instagram: 1. Take a screenshot of your card 2. Open Instagram 3. Post it as a story or feed with #Congratulations #Achievement #WishFountain');
+        });
+
+        document.getElementById('telegramBtn').addEventListener('click', () => {
+            const text = encodeURIComponent(`🎉 ${cardTitle.textContent}\n\n${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Wish Fountain: ${window.location.href}`);
+            window.open(`https://t.me/share/url?url=${text}`, '_blank');
+        });
+
+        document.getElementById('emailBtn').addEventListener('click', () => {
+            const subject = encodeURIComponent(`${cardTitle.textContent} - Congratulations from Wish Fountain`);
+            const body = encodeURIComponent(`${cardMessage.textContent}\n\n${cardSender.textContent}\n\nCreated with Wish Fountain Congratulations Card Creator\n${window.location.href}\n\nCelebrate achievements with Wish Fountain!`);
+            window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+        });
+
+        // Copy link functionality
+        document.getElementById('copyLinkBtn').addEventListener('click', () => {
+            const cardData = {
+                title: cardTitle.textContent,
+                message: cardMessage.textContent,
+                sender: cardSender.textContent,
+                design: document.querySelector('.design-btn.active').className.match(/color\d+/)[0]
+            };
+            
+            const encodedData = encodeURIComponent(JSON.stringify(cardData));
+            const shareableLink = `${window.location.origin}${window.location.pathname}?card=${encodedData}`;
+            
+            navigator.clipboard.writeText(shareableLink)
+                .then(() => showNotification('🎉 Card link copied to clipboard! Share it to celebrate achievements.'))
+                .catch(err => {
+                    console.error('Could not copy text: ', err);
+                    showNotification('Failed to copy link. Please try again.');
+                });
+        });
+
+        // Confetti effect
+        function createConfettiPiece() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti-piece';
+            
+            // Random position
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.top = '-10px';
+            
+            // Random size
+            const size = Math.random() * 10 + 5;
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            
+            // Random color
+            const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#6a11cb', '#FFEAA7'];
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random shape
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            
+            document.body.appendChild(confetti);
+            
+            // Random animation
+            const duration = Math.random() * 5 + 3;
+            confetti.style.animationDuration = `${duration}s`;
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                confetti.remove();
+            }, duration * 1000);
+        }
+
+        // Sparkle effect
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = `${Math.random() * 100}vw`;
+            sparkle.style.top = `${Math.random() * 100}vh`;
+            sparkle.style.fontSize = `${Math.random() * 15 + 10}px`;
+            sparkle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+            sparkle.style.opacity = Math.random() * 0.5 + 0.3;
+            
+            document.body.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                sparkle.remove();
+            }, 5000);
+        }
+
+        // Celebration effect (for when sending congratulations)
+        function createCelebrationEffect() {
+            // Create lots of confetti and sparkles
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createConfettiPiece();
+                    if (i % 5 === 0) createSparkle();
+                }, i * 50);
+            }
+            
+            // Make celebration icons bounce
+            document.querySelectorAll('.celebration-icon').forEach(icon => {
+                icon.style.animation = 'float 0.5s ease-in-out infinite';
+                icon.style.filter = 'drop-shadow(0 0 15px rgba(255, 215, 0, 0.7)) brightness(1.3)';
+            });
+            
+            // Add golden glow to card
+            congratsCard.style.boxShadow = 'inset 0 0 60px rgba(255, 215, 0, 0.4), 0 0 50px rgba(255, 107, 107, 0.5)';
+            congratsCard.style.transition = 'all 0.5s ease';
+            
+            // Return to normal after 4 seconds
+            setTimeout(() => {
+                document.querySelectorAll('.celebration-icon').forEach(icon => {
+                    icon.style.animation = 'float 3s ease-in-out infinite';
+                    icon.style.filter = 'none';
+                });
+                congratsCard.style.boxShadow = 'inset 0 0 40px rgba(255, 255, 255, 0.2), 0 10px 25px rgba(0, 0, 0, 0.3)';
+            }, 4000);
+        }
+
+        // Create periodic effects
+        setInterval(createConfettiPiece, 300);
+        setInterval(createSparkle, 800);
+        
+        // Create initial celebration
+        setTimeout(() => {
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    createConfettiPiece();
+                    if (i % 6 === 0) createSparkle();
+                }, i * 100);
+            }
+        }, 1000);
+
+        // Notification function
+        function showNotification(message) {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create new notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 3000);
+        }
+        
+        // Check for card data in URL (for sharing)
+        function loadCardFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cardDataParam = urlParams.get('card');
+            
+            if (cardDataParam) {
+                try {
+                    const cardData = JSON.parse(decodeURIComponent(cardDataParam));
+                    
+                    // Apply card data
+                    cardTitle.textContent = cardData.title || cardTitle.textContent;
+                    cardMessage.textContent = cardData.message || cardMessage.textContent;
+                    cardSender.textContent = cardData.sender || cardSender.textContent;
+                    
+                    // Apply design if specified
+                    if (cardData.design) {
+                        const designButton = document.querySelector(`.${cardData.design}`);
+                        if (designButton) {
+                            designButton.click();
+                        }
+                    }
+                    
+                    showNotification('🎉 Congratulations card loaded successfully from Wish Fountain!');
+                } catch (e) {
+                    console.error('Error loading card data:', e);
+                }
+            }
+        }
+        
+        // Load card data from URL if present
+        loadCardFromURL();
+        
+        // Initialize with a random wish
+        const randomWishIndex = Math.floor(Math.random() * autoWishes.length);
+        cardMessage.textContent = autoWishes[randomWishIndex];
+        
+        // Show welcome notification
+        setTimeout(() => {
+            showNotification('🎉 Welcome to Wish Fountain! Create beautiful cards to celebrate achievements!');
+        }, 1500);
+    </script>
+</body>
+</html>
