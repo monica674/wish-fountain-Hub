@@ -316,37 +316,91 @@
             filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
         }
         
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: #f6d365;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #fbc2eb;
-            transform: translateY(-3px);
-            text-decoration: underline;
-        }
-        
+       /* ===== IMPROVED FOOTER STYLES - Soft & Readable ===== */
+.main-footer {
+    background: rgba(10, 25, 35, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 50px 20px 30px;
+    margin-top: 60px;
+    border-top: 3px solid #ff9a8b;
+    color: #e0e0e0;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h3 {
+    color: #ffd966;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ff9a8b;
+    display: inline-block;
+}
+
+.footer-section p {
+    color: #d1d5db;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.footer-section a {
+    color: #b0c4de;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 12px;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+}
+
+.footer-section a i {
+    width: 25px;
+    color: #ffb5a7;
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+
+.footer-section a:hover {
+    color: #ffffff;
+    transform: translateX(5px);
+}
+
+.footer-section a:hover i {
+    color: #ffd966;
+}
+
+.footer-section a[href^="mailto"],
+.footer-section a[href^="https://wa.me"] {
+    color: #ffe5b4;
+    font-weight: 500;
+}
+
+.footer-section a[href^="mailto"]:hover,
+.footer-section a[href^="https://wa.me"]:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #a0aec0;
+    font-size: 0.9rem;
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+    color: #a0aec0;
+}
         /* Responsive */
         @media (max-width: 768px) {
             h1 {
