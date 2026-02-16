@@ -826,39 +826,108 @@
     }
 
     /* FOOTER */
-    footer {
-      margin-top: 50px;
-      padding: 30px;
-      color: #FFD700;
-      font-size: 1rem;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 20px;
-      border-top: 2px solid rgba(255, 215, 0, 0.2);
-    }
+    /* ===== IMPROVED FOOTER STYLES - Consistent with Site ===== */
+.main-footer {
+    background: rgba(10, 25, 35, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 50px 20px 30px;
+    margin-top: 60px;
+    border-top: 3px solid #ff9a8b;
+    color: #e0e0e0;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+}
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
 
-    .social-links a {
-      color: #FFD700;
-      text-decoration: none;
-      font-size: 1.1rem;
-      transition: all 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+.footer-section h3 {
+    color: #ffd966;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ff9a8b;
+    display: inline-block;
+}
 
-    .social-links a:hover {
-      color: #FF6B6B;
-      transform: translateY(-3px);
-    }
+.footer-section p {
+    color: #d1d5db;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
 
+.footer-section a {
+    color: #b0c4de;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 12px;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+}
+
+.footer-section a i {
+    width: 25px;
+    color: #ffb5a7;
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+
+.footer-section a:hover {
+    color: #ffffff;
+    transform: translateX(5px);
+}
+
+.footer-section a:hover i {
+    color: #ffd966;
+}
+
+.footer-section a[href^="mailto"],
+.footer-section a[href^="https://wa.me"] {
+    color: #ffe5b4;
+    font-weight: 500;
+}
+
+.footer-section a[href^="mailto"]:hover,
+.footer-section a[href^="https://wa.me"]:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #a0aec0;
+    font-size: 0.9rem;
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+    color: #a0aec0;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-section a {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+    
+    .footer-section a i {
+        margin-right: 8px;
+    }
+}
     /* Responsive */
     @media (max-width: 1200px) {
       h1 { font-size: 3.2rem; }
