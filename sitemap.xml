@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
     <!-- ===== HOME & CORE PAGES ===== -->
+    <!-- ===== NEW FESTIVAL GENERATORS ===== -->
+<url>
+    <loc>https://wishfountain.site/diwali-wishes-generator.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-19</lastmod>
+</url>
+
+<url>
+    <loc>https://wishfountain.site/dussehra-wishes-generator.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-19</lastmod>
+</url>
+
+<url>
+    <loc>https://wishfountain.site/engagement-wishes-generator.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2026-02-19</lastmod>
+</url>
     <url>
         <loc>https://wishfountain.site/</loc>
         <lastmod>2026-02-16</lastmod>
