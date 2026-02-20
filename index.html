@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     
     <style>
-        /* ===== CRITICAL CSS (same as before, keeping your optimizations) ===== */
+        /* ===== CRITICAL CSS ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -224,9 +224,10 @@
             margin-bottom: 12px;
             font-weight: bold;
             text-transform: uppercase;
+            display: inline-block;
         }
         
-        /* ===== NEW CONTENT SECTIONS FOR SEO ===== */
+        /* ===== CONTENT SECTIONS FOR SEO ===== */
         .featured-categories {
             max-width: 1200px;
             margin: 50px auto;
@@ -365,7 +366,7 @@
             font-size: 1.2rem;
         }
         
-        /* ===== IMPROVED FOOTER STYLES - Soft & Readable ===== */
+        /* ===== FOOTER STYLES ===== */
         .main-footer {
             background: rgba(10, 25, 35, 0.98);
             backdrop-filter: blur(10px);
@@ -424,17 +425,6 @@
 
         .footer-section a:hover i {
             color: #ffd966;
-        }
-
-        .footer-section a[href^="mailto"],
-        .footer-section a[href^="https://wa.me"] {
-            color: #ffe5b4;
-            font-weight: 500;
-        }
-
-        .footer-section a[href^="mailto"]:hover,
-        .footer-section a[href^="https://wa.me"]:hover {
-            color: #ffffff;
         }
 
         .footer-bottom {
@@ -535,7 +525,7 @@
             </div>
             
             <div class="filters" role="group" aria-label="Filter tools by category">
-                <button class="active" onclick="filterTools('all')" aria-pressed="true">All (11 Generators)</button>
+                <button class="active" onclick="filterTools('all')" aria-pressed="true">All (14 Generators)</button>
                 <button onclick="filterTools('birthday')" aria-pressed="false">🎂 Birthday</button>
                 <button onclick="filterTools('festival')" aria-pressed="false">🎊 Festival</button>
                 <button onclick="filterTools('event')" aria-pressed="false">📅 Event</button>
@@ -550,8 +540,7 @@
             </div>
         </section>
 
-        <!-- ===== NEW SEO-RICH CONTENT SECTION 1: FEATURED CATEGORIES ===== -->
-                <!-- ===== NEW SEO-RICH CONTENT SECTION 1: FEATURED CATEGORIES ===== -->
+        <!-- SECTION 1: MAIN CATEGORIES -->
         <section class="featured-categories">
             <h2>📋 Browse Wishes by Category</h2>
             <div class="category-grid">
@@ -578,29 +567,29 @@
             </div>
         </section>
 
-        <!-- ===== NEW FESTIVAL WISH GENERATORS ===== -->
+        <!-- SECTION 2: NEW FESTIVAL WISHES - DIWALI, DUSSEHRA, ENGAGEMENT -->
         <section class="featured-categories">
             <h2>🪔 New Festival Wishes</h2>
             <div class="category-grid">
-                <!-- DIWALI WISHES - NEW -->
+                <!-- DIWALI WISHES -->
                 <div class="category-card">
-                    <div class="badge" style="margin-bottom: 10px; display: inline-block;">🪔 New</div>
+                    <div class="badge">🪔 NEW</div>
                     <h3>🪔 Diwali Wishes Generator</h3>
                     <p>Beautiful Diwali messages, greetings, and blessings for family and friends. Find the perfect words for the festival of lights.</p>
                     <a href="diwali-wishes-generator.html">Generate Diwali Wishes →</a>
                 </div>
 
-                <!-- DUSSEHRA WISHES - NEW -->
+                <!-- DUSSEHRA WISHES -->
                 <div class="category-card">
-                    <div class="badge" style="margin-bottom: 10px; display: inline-block;">🎯 New</div>
+                    <div class="badge">🎯 NEW</div>
                     <h3>🎯 Dussehra Wishes Generator</h3>
                     <p>Celebrate the victory of good over evil with heartfelt Dussehra messages and greetings for everyone.</p>
                     <a href="dussehra-wishes-generator.html">Generate Dussehra Wishes →</a>
                 </div>
 
-                <!-- ENGAGEMENT WISHES - NEW -->
+                <!-- ENGAGEMENT WISHES -->
                 <div class="category-card">
-                    <div class="badge" style="margin-bottom: 10px; display: inline-block;">💍 New</div>
+                    <div class="badge">💍 NEW</div>
                     <h3>💍 Engagement Wishes Generator</h3>
                     <p>Perfect engagement congratulations messages for the happy couple. Celebrate their new journey together.</p>
                     <a href="engagement-wishes-generator.html">Generate Engagement Wishes →</a>
@@ -608,7 +597,7 @@
             </div>
         </section>
 
-        <!-- ===== NEW SEO-RICH CONTENT SECTION 2: POPULAR WISHES PREVIEW ===== -->
+        <!-- POPULAR WISHES SECTION -->
         <section class="popular-wishes">
             <h2>🔥 Most Popular Wishes This Week</h2>
             <div class="wishes-preview">
@@ -640,7 +629,7 @@
             </div>
         </section>
 
-        <!-- ===== NEW SEO-RICH CONTENT SECTION 3: ABOUT US ===== -->
+        <!-- ABOUT SECTION -->
         <section class="about-section" id="about">
             <h2>💫 About Wish Fountain Hub</h2>
             <p>Welcome to Wish Fountain Hub – your one-stop destination for beautiful, personalized wishes for every occasion. Whether it's a birthday, Eid, Christmas, anniversary, or just because, we help you find the perfect words.</p>
@@ -648,7 +637,7 @@
             <p>Based in Pakistan, serving the world. 🌍</p>
         </section>
 
-        <!-- ===== NEW SEO-RICH CONTENT SECTION 4: FAQ ===== -->
+        <!-- FAQ SECTION -->
         <section class="faq-section" id="faq">
             <h2>❓ Frequently Asked Questions</h2>
             
@@ -678,11 +667,11 @@
             </div>
         </section>
 
-        <!-- COMING SOON (kept but moved down) -->
+        <!-- COMING SOON -->
         <div style="max-width:1200px; margin:40px auto; padding:0 20px;">
             <div class="coming-soon" style="border:2px dashed #00ff7f; border-radius:20px; padding:30px; text-align:center; background:rgba(0,255,127,0.02);">
                 <h3 style="color:#00ffaa; font-size:1.8rem; margin-bottom:15px;">✨ Coming Soon</h3>
-                <p style="margin-bottom:10px;">Valentine's Day • Diwali • Mother's Day • Father's Day • Ramadan • Back to School • Congratulations • Get Well • Sympathy • Thank You</p>
+                <p style="margin-bottom:10px;">Valentine's Day • Mother's Day • Father's Day • Ramadan • Back to School • Sympathy</p>
                 <p style="opacity:0.8;">We're working hard to bring you wishes for every occasion. Check back weekly!</p>
             </div>
         </div>
@@ -713,8 +702,9 @@
                 <a href="christmas-card.html">🎄 Christmas Wishes</a>
                 <a href="newyear-wish-fountain-generator.html">🎆 New Year Wishes</a>
                 <a href="wedding-wishes.html">💒 Wedding Wishes</a>
-                <a href="thank-you-wishes.html">🙏 Thank You Wishes</a>
-                <a href="get-well-soon-wishes.html">🤒 Get Well Wishes</a>
+                <a href="diwali-wishes-generator.html">🪔 Diwali Wishes</a>
+                <a href="dussehra-wishes-generator.html">🎯 Dussehra Wishes</a>
+                <a href="engagement-wishes-generator.html">💍 Engagement Wishes</a>
             </div>
             
             <div class="footer-section">
@@ -746,7 +736,10 @@
             {name: "Festival Wishes", file: "festival-wishes-generator.html", cat: "festival", badge: "🎊 Multi-faith"},
             {name: "Baby Shower Wishes", file: "wishfountain-baby-shower-card-generator.html", cat: "event", badge: "👶 New"},
             {name: "Baisakhi Wishes", file: "wishfountain-baisakhi-wishes.html", cat: "festival", badge: "🎉 Punjabi"},
-            {name: "Congratulations Wishes", file: "wishfountain-congratulations-card.html", cat: "event", badge: "🏆 Success"}
+            {name: "Congratulations Wishes", file: "wishfountain-congratulations-card.html", cat: "event", badge: "🏆 Success"},
+            {name: "Diwali Wishes Generator", file: "diwali-wishes-generator.html", cat: "festival", badge: "🪔 New"},
+            {name: "Dussehra Wishes Generator", file: "dussehra-wishes-generator.html", cat: "festival", badge: "🎯 New"},
+            {name: "Engagement Wishes Generator", file: "engagement-wishes-generator.html", cat: "event", badge: "💍 New"}
         ];
 
         const toolList = document.getElementById("toolList");
@@ -863,7 +856,9 @@
                 <li><a href="christmas-card.html">Christmas Wishes (100+)</a></li>
                 <li><a href="newyear-wish-fountain-generator.html">New Year Wishes (75+)</a></li>
                 <li><a href="wedding-wishes.html">Wedding Wishes (60+)</a></li>
-                <li><a href="thank-you-wishes.html">Thank You Notes (40+)</a></li>
+                <li><a href="diwali-wishes-generator.html">Diwali Wishes (30+)</a></li>
+                <li><a href="dussehra-wishes-generator.html">Dussehra Wishes (25+)</a></li>
+                <li><a href="engagement-wishes-generator.html">Engagement Wishes (20+)</a></li>
             </ul>
         </div>
     </noscript>
