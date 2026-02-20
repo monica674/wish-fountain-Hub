@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Analytics (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1X8ZVL0S2V"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-1X8ZVL0S2V');
+    </script>
+    
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <title>Wish Fountain Hub - 500+ Free Wishes for Birthdays, Eid, Christmas & More</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="google-site-verification" content="785fr8G00AIxuy5xvBIXfZtBmD7qwW5-b_zCYqs-6dM" />
+    <meta name="description" content="Free wish generators for every occasion. Browse 500+ birthday wishes, Eid messages, Christmas greetings, and more. Create personalized wishes in seconds.">
+    <meta name="keywords" content="wish fountain, birthday wishes generator, eid wishes, christmas cards, new year messages, thank you notes">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://wishfountain.site/">
+    
+    <!-- Structured Data for better SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Wish Fountain Hub",
+        "url": "https://wishfountain.site/",
+        "description": "Free online wish generators for birthdays, festivals, and special events",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://wishfountain.site/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    
+    <!-- Fonts with font-display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <style>
+        /* ===== CRITICAL CSS (same as before, keeping your optimizations) ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #000;
+            color: #00ff7f;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .main-nav {
+            background: rgba(0, 0, 0, 0.95);
+            border-bottom: 2px solid #00ff7f;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .nav-brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            text-decoration: none;
+        }
+        .nav-brand i { font-size: 1.8rem; color: #00ff7f; }
+        .nav-brand h1 { font-size: 1.5rem; color: #00ff7f; letter-spacing: 0.5px; }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .nav-links a {
+            color: #00ff7f;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid transparent;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #00ff7f;
+            color: #000;
+            box-shadow: 0 0 20px #00ff7f;
+        }
+        .hero {
+            padding: 70px 20px 50px;
+            background: radial-gradient(circle at center, rgba(0, 30, 15, 0.4) 0%, rgba(0, 0, 0, 0.8) 70%);
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .hero h2 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            margin-bottom: 15px;
+            color: #00ff7f;
+        }
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #00ff7f;
+        }
+        .search-box {
+            max-width: 500px;
+            margin: 30px auto;
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 14px 50px 14px 20px;
+            border-radius: 35px;
+            border: 2px solid #00ff7f;
+            background: rgba(17, 17, 17, 0.9);
+            color: #00ff7f;
+            font-size: 1rem;
+            outline: none;
+            transition: box-shadow 0.3s;
+        }
+        .search-box input:focus { box-shadow: 0 0 25px #00ff7f; }
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00ff7f;
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+        .filters {
+            margin: 25px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 0 20px;
+        }
+        .filters button {
+            background: #000;
+            border: 2px solid #00ff7f;
+            color: #00ff7f;
+            padding: 10px 22px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        .filters button.active,
+        .filters button:hover {
+            background: #00ff7f;
+            color: #000;
+            box-shadow: 0 0 20px #00ff7f;
+            transform: translateY(-3px);
+        }
+        .tools-section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .tools-scroll {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        .tool {
+            border: 2px solid #00ff7f;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: #00ff7f;
+            transition: all 0.4s ease;
+            background: rgba(10, 20, 15, 0.3);
+            position: relative;
+            overflow: hidden;
+            min-height: 220px;
+        }
+        .tool:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 0 50px #00ff7f;
+            background: rgba(0, 255, 127, 0.15);
+            border-color: #00ffaa;
+        }
+        .tool h3 { font-size: 1.1rem; margin: 10px 0; text-align: center; color: #00ff7f; }
+        .tool span { font-size: 0.9rem; opacity: 0.8; margin-top: 5px; color: #00ff7f; }
+        .badge {
+            background: #00ff7f;
+            color: #000;
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* ===== NEW CONTENT SECTIONS FOR SEO ===== */
+        .featured-categories {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        .featured-categories h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #00ffaa;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .category-card {
+            border: 2px solid #00ff7f;
+            border-radius: 20px;
+            padding: 30px 20px;
+            background: rgba(0, 255, 127, 0.05);
+            transition: transform 0.3s;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px #00ff7f;
+        }
+        .category-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #00ffaa;
+        }
+        .category-card p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .category-card a {
+            color: #00ff7f;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #00ff7f;
+            padding: 8px 16px;
+            border-radius: 25px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        .category-card a:hover {
+            background: #00ff7f;
+            color: #000;
+        }
+        
+        .popular-wishes {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .popular-wishes h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #00ffaa;
+        }
+        .wishes-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .wish-list {
+            border: 1px solid rgba(0, 255, 127, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .wish-list h3 {
+            color: #00ffaa;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 1px solid #00ff7f;
+            padding-bottom: 10px;
+        }
+        .wish-list ul {
+            list-style: none;
+        }
+        .wish-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.4;
+        }
+        .wish-list li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            color: #00ff7f;
+        }
+        
+        .about-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 40px 20px;
+            background: rgba(0, 255, 127, 0.05);
+            border-radius: 30px;
+            border: 2px dashed #00ff7f;
+        }
+        .about-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #00ffaa;
+        }
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .faq-section {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #00ffaa;
+        }
+        .faq-item {
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(0, 255, 127, 0.3);
+            padding-bottom: 20px;
+        }
+        .faq-item h3 {
+            color: #00ff7f;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        /* ===== IMPROVED FOOTER STYLES - Soft & Readable ===== */
+        .main-footer {
+            background: rgba(10, 25, 35, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 50px 20px 30px;
+            margin-top: 60px;
+            border-top: 3px solid #ff9a8b;
+            color: #e0e0e0;
+            width: 100%;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: #ffd966;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff9a8b;
+            display: inline-block;
+        }
+
+        .footer-section p {
+            color: #d1d5db;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a {
+            color: #b0c4de;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a i {
+            width: 25px;
+            color: #ffb5a7;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .footer-section a:hover i {
+            color: #ffd966;
+        }
+
+        .footer-section a[href^="mailto"],
+        .footer-section a[href^="https://wa.me"] {
+            color: #ffe5b4;
+            font-weight: 500;
+        }
+
+        .footer-section a[href^="mailto"]:hover,
+        .footer-section a[href^="https://wa.me"]:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom p {
+            margin: 5px 0;
+            color: #a0aec0;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section a {
+                justify-content: center;
+                display: flex;
+                align-items: center;
+            }
+            
+            .footer-section a i {
+                margin-right: 8px;
+            }
+        }
+        
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .snowflake-effect {
+            position: absolute;
+            color: #00ff7f;
+            font-size: 1rem;
+            opacity: 0.3;
+            animation: fall linear infinite;
+            will-change: transform;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.active { display: flex; flex-direction: column; width: 100%; }
+            .tools-scroll { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <div class="snow-container" id="snowContainer" aria-hidden="true"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="main-nav" aria-label="Main Navigation">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">
+                <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+                <h1>Wish Fountain Hub</h1>
+            </a>
+            
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" style="background:transparent; border:2px solid #00ff7f; color:#00ff7f; padding:8px 12px; border-radius:8px; display:none;">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/" class="active" aria-current="page">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero" aria-labelledby="hero-heading">
+            <h2 id="hero-heading">✨ Wish Fountain Hub ✨</h2>
+            <p>Create Beautiful, Personalized Wishes for Every Occasion in Seconds</p>
+            <p style="font-size:1rem; max-width:700px; margin:20px auto;">Over 500+ free wishes for birthdays, Eid, Christmas, New Year, weddings, and more. Updated daily.</p>
+            
+            <div class="search-box">
+                <input id="search" type="text" placeholder="Search birthday wishes, Eid messages..." aria-label="Search" autocomplete="off">
+                <i class="fas fa-search search-icon" aria-hidden="true"></i>
+            </div>
+            
+            <div class="filters" role="group" aria-label="Filter tools by category">
+                <button class="active" onclick="filterTools('all')" aria-pressed="true">All (11 Generators)</button>
+                <button onclick="filterTools('birthday')" aria-pressed="false">🎂 Birthday</button>
+                <button onclick="filterTools('festival')" aria-pressed="false">🎊 Festival</button>
+                <button onclick="filterTools('event')" aria-pressed="false">📅 Event</button>
+            </div>
+        </section>
+
+        <!-- TOOLS GRID SECTION -->
+        <section class="tools-section" aria-labelledby="tools-heading">
+            <h2 id="tools-heading" style="text-align:center; margin-bottom:30px; color:#00ffaa;">🌟 Our Wish Generators</h2>
+            <div class="tools-scroll" id="toolList" role="list">
+                <!-- Tools loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- ===== NEW SEO-RICH CONTENT SECTION 1: FEATURED CATEGORIES ===== -->
+                <!-- ===== NEW SEO-RICH CONTENT SECTION 1: FEATURED CATEGORIES ===== -->
+        <section class="featured-categories">
+            <h2>📋 Browse Wishes by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <h3>🎂 Birthday Wishes</h3>
+                    <p>Over 200+ birthday messages for friends, family, colleagues, and loved ones. Funny, heartfelt, professional, and romantic options available.</p>
+                    <a href="birthday-wishes-generator.html">Explore Birthday Wishes →</a>
+                </div>
+                <div class="category-card">
+                    <h3>🕌 Eid & Islamic Wishes</h3>
+                    <p>Beautiful Eid-ul-Fitr and Eid-ul-Adha messages in English and Roman Urdu. Perfect for sharing with family and friends.</p>
+                    <a href="eid-wishes-generator.html">Explore Eid Wishes →</a>
+                </div>
+                <div class="category-card">
+                    <h3>🎄 Christmas & Holiday</h3>
+                    <p>Festive Christmas cards, New Year greetings, and holiday messages for everyone on your list. Religious and secular options.</p>
+                    <a href="christmas-card.html">Explore Christmas Wishes →</a>
+                </div>
+                <div class="category-card">
+                    <h3>💝 Wedding & Anniversary</h3>
+                    <p>Romantic messages for couples celebrating their special day. Wedding wishes, anniversary notes, and love letters.</p>
+                    <a href="wedding-wishes.html">Explore Wedding Wishes →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEW FESTIVAL WISH GENERATORS ===== -->
+        <section class="featured-categories">
+            <h2>🪔 New Festival Wishes</h2>
+            <div class="category-grid">
+                <!-- DIWALI WISHES - NEW -->
+                <div class="category-card">
+                    <div class="badge" style="margin-bottom: 10px; display: inline-block;">🪔 New</div>
+                    <h3>🪔 Diwali Wishes Generator</h3>
+                    <p>Beautiful Diwali messages, greetings, and blessings for family and friends. Find the perfect words for the festival of lights.</p>
+                    <a href="diwali-wishes-generator.html">Generate Diwali Wishes →</a>
+                </div>
+
+                <!-- DUSSEHRA WISHES - NEW -->
+                <div class="category-card">
+                    <div class="badge" style="margin-bottom: 10px; display: inline-block;">🎯 New</div>
+                    <h3>🎯 Dussehra Wishes Generator</h3>
+                    <p>Celebrate the victory of good over evil with heartfelt Dussehra messages and greetings for everyone.</p>
+                    <a href="dussehra-wishes-generator.html">Generate Dussehra Wishes →</a>
+                </div>
+
+                <!-- ENGAGEMENT WISHES - NEW -->
+                <div class="category-card">
+                    <div class="badge" style="margin-bottom: 10px; display: inline-block;">💍 New</div>
+                    <h3>💍 Engagement Wishes Generator</h3>
+                    <p>Perfect engagement congratulations messages for the happy couple. Celebrate their new journey together.</p>
+                    <a href="engagement-wishes-generator.html">Generate Engagement Wishes →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEW SEO-RICH CONTENT SECTION 2: POPULAR WISHES PREVIEW ===== -->
+        <section class="popular-wishes">
+            <h2>🔥 Most Popular Wishes This Week</h2>
+            <div class="wishes-preview">
+                <div class="wish-list">
+                    <h3>For Best Friends</h3>
+                    <ul>
+                        <li>"Happy birthday to my partner-in-crime! Thanks for all the late-night talks and endless laughs."</li>
+                        <li>"You're not just a friend, you're family. So grateful for you today and always."</li>
+                        <li>"Another year older, another year wiser... okay maybe just older. Love you!"</li>
+                        <li>"Thanks for being the friend who still likes me even though you've seen my worst days."</li>
+                    </ul>
+                </div>
+                <div class="wish-list">
+                    <h3>For Family</h3>
+                    <ul>
+                        <li>"To mom: Thank you for every sacrifice, every hug, and every prayer. You're my hero."</li>
+                        <li>"Dad, thanks for teaching me what really matters in life. Happy birthday!"</li>
+                        <li>"Siblings: From fighting over toys to being each other's biggest supporters. Love you."</li>
+                    </ul>
+                </div>
+                <div class="wish-list">
+                    <h3>For Colleagues</h3>
+                    <ul>
+                        <li>"Happy birthday! So glad to have you on our team. Hope you have a wonderful day!"</li>
+                        <li>"Wishing a fantastic birthday to someone who makes the workplace brighter."</li>
+                        <li>"Hope your day is filled with joy and cake. You've earned it!"</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NEW SEO-RICH CONTENT SECTION 3: ABOUT US ===== -->
+        <section class="about-section" id="about">
+            <h2>💫 About Wish Fountain Hub</h2>
+            <p>Welcome to Wish Fountain Hub – your one-stop destination for beautiful, personalized wishes for every occasion. Whether it's a birthday, Eid, Christmas, anniversary, or just because, we help you find the perfect words.</p>
+            <p>Our team has curated over 500+ wishes across 20+ categories. Every message is original, heartfelt, and ready to use. Simply copy, paste, and add your personal touch.</p>
+            <p>Based in Pakistan, serving the world. 🌍</p>
+        </section>
+
+        <!-- ===== NEW SEO-RICH CONTENT SECTION 4: FAQ ===== -->
+        <section class="faq-section" id="faq">
+            <h2>❓ Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3>Are these wishes really free?</h3>
+                <p>Yes! 100% free forever. No hidden charges, no email signup required. Just copy and share.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Can I use these wishes for commercial purposes?</h3>
+                <p>Yes, you can use our wishes for personal or commercial use. No attribution needed, though it's always appreciated!</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Do you have wishes in Urdu or Roman Urdu?</h3>
+                <p>Yes! We're actively adding Urdu and Roman Urdu wishes, especially for Eid, Ramadan, and Pakistani cultural events.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>How often do you add new wishes?</h3>
+                <p>We add new wishes weekly. Follow us on social media for updates on new collections.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Can I request a specific type of wish?</h3>
+                <p>Absolutely! Contact us through our social media or email, and we'll add your requested wishes to our queue.</p>
+            </div>
+        </section>
+
+        <!-- COMING SOON (kept but moved down) -->
+        <div style="max-width:1200px; margin:40px auto; padding:0 20px;">
+            <div class="coming-soon" style="border:2px dashed #00ff7f; border-radius:20px; padding:30px; text-align:center; background:rgba(0,255,127,0.02);">
+                <h3 style="color:#00ffaa; font-size:1.8rem; margin-bottom:15px;">✨ Coming Soon</h3>
+                <p style="margin-bottom:10px;">Valentine's Day • Diwali • Mother's Day • Father's Day • Ramadan • Back to School • Congratulations • Get Well • Sympathy • Thank You</p>
+                <p style="opacity:0.8;">We're working hard to bring you wishes for every occasion. Check back weekly!</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Wish Fountain Hub</h3>
+                <p>Your one-stop destination for creating beautiful wishes for every occasion. Free, fast, and fully customizable.</p>
+                <p>📍 Based in Pakistan<br>🌍 Serving the world</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                <a href="contact.html"><i class="fas fa-address-book"></i> Contact</a>
+                <a href="privacy.html"><i class="fas fa-lock"></i> Privacy</a>
+                <a href="terms.html"><i class="fas fa-file-contract"></i> Terms</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Popular Generators</h3>
+                <a href="birthday-wishes-generator.html">🎂 Birthday Wishes</a>
+                <a href="eid-wishes-generator.html">🕌 Eid Wishes</a>
+                <a href="christmas-card.html">🎄 Christmas Wishes</a>
+                <a href="newyear-wish-fountain-generator.html">🎆 New Year Wishes</a>
+                <a href="wedding-wishes.html">💒 Wedding Wishes</a>
+                <a href="thank-you-wishes.html">🙏 Thank You Wishes</a>
+                <a href="get-well-soon-wishes.html">🤒 Get Well Wishes</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <a href="#" onclick="filterTools('birthday'); return false;">Birthday</a>
+                <a href="#" onclick="filterTools('festival'); return false;">Festival</a>
+                <a href="#" onclick="filterTools('event'); return false;">Events</a>
+                <a href="#" onclick="filterTools('all'); return false;">All Generators</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2026 Wish Fountain Hub | Created with ❤️ in Pakistan | 500+ Free Wishes for Every Occasion</p>
+            <p style="margin-top: 5px; font-size: 0.8rem;">Amazon Affiliate ID: maria555-20</p>
+        </div>
+    </footer>
+
+    <script>
+        // ===== TOOLS DATA =====
+        const tools = [
+            {name: "Birthday Wishes Generator", file: "birthday-wishes-generator.html", cat: "birthday", badge: "🔥 200+ Wishes"},
+            {name: "Eid Wishes Generator", file: "eid-wishes-generator.html", cat: "festival", badge: "🕌 New"},
+            {name: "Christmas Wishes Generator", file: "christmas-card.html", cat: "event", badge: "🎄 100+ Cards"},
+            {name: "New Year Wishes Generator", file: "newyear-wish-fountain-generator.html", cat: "event", badge: "🎆 Popular"},
+            {name: "Thank You Wishes Generator", file: "thank-you-wishes.html", cat: "event", badge: "🙏 Gratitude"},
+            {name: "Get Well Soon Wishes", file: "get-well-soon-wishes.html", cat: "event", badge: "🤒 Healing"},
+            {name: "Anniversary Wishes", file: "anniversary-wishes-generator-pro.html", cat: "event", badge: "❤️ Romantic"},
+            {name: "Wedding Wishes", file: "wedding-wishes.html", cat: "event", badge: "💒 New"},
+            {name: "Festival Wishes", file: "festival-wishes-generator.html", cat: "festival", badge: "🎊 Multi-faith"},
+            {name: "Baby Shower Wishes", file: "wishfountain-baby-shower-card-generator.html", cat: "event", badge: "👶 New"},
+            {name: "Baisakhi Wishes", file: "wishfountain-baisakhi-wishes.html", cat: "festival", badge: "🎉 Punjabi"},
+            {name: "Congratulations Wishes", file: "wishfountain-congratulations-card.html", cat: "event", badge: "🏆 Success"}
+        ];
+
+        const toolList = document.getElementById("toolList");
+        const searchInput = document.getElementById("search");
+
+        function renderTools(toolsArray) {
+            if (!toolList) return;
+            toolList.innerHTML = "";
+            
+            if (toolsArray.length === 0) {
+                toolList.innerHTML = `<div class="no-results" style="grid-column:1/-1; text-align:center; padding:40px;">No generators found</div>`;
+                return;
+            }
+            
+            toolsArray.forEach((tool) => {
+                const toolCard = document.createElement('a');
+                toolCard.className = 'tool';
+                toolCard.href = tool.file;
+                toolCard.setAttribute('aria-label', tool.name);
+                toolCard.setAttribute('role', 'listitem');
+                toolCard.innerHTML = `
+                    ${tool.badge ? `<div class="badge">${tool.badge}</div>` : ""}
+                    <h3>${tool.name}</h3>
+                    <span>${tool.cat.charAt(0).toUpperCase() + tool.cat.slice(1)}</span>
+                `;
+                toolList.appendChild(toolCard);
+            });
+        }
+
+        // Search functionality
+        if (searchInput) {
+            searchInput.addEventListener("input", (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredTools = tools.filter(tool => 
+                    tool.name.toLowerCase().includes(searchTerm) || 
+                    tool.cat.toLowerCase().includes(searchTerm)
+                );
+                renderTools(filteredTools);
+            });
+        }
+
+        // Filter function
+        function filterTools(category) {
+            const buttons = document.querySelectorAll('.filters button');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            if (event && event.target) {
+                event.target.classList.add('active');
+                event.target.setAttribute('aria-pressed', 'true');
+            }
+            
+            if (category === "all") {
+                renderTools(tools);
+                if (searchInput) searchInput.value = "";
+            } else {
+                const filteredTools = tools.filter(tool => tool.cat === category);
+                renderTools(filteredTools);
+                if (searchInput) searchInput.value = "";
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (navLinks && menuToggle) {
+                const isExpanded = navLinks.classList.toggle('active');
+                menuToggle.setAttribute('aria-expanded', isExpanded);
+            }
+        }
+
+        // Show mobile menu button on small screens
+        if (window.innerWidth <= 768) {
+            document.querySelector('.menu-toggle').style.display = 'block';
+        }
+
+        // Snow effect
+        function createSnow() {
+            const container = document.getElementById('snowContainer');
+            if (!container) return;
+            
+            for (let i = 0; i < 20; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake-effect';
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (10 + Math.random() * 15) + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.fontSize = (8 + Math.random() * 8) + 'px';
+                container.appendChild(snowflake);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTools(tools);
+            setTimeout(createSnow, 1000);
+            
+            // Update active filter
+            const allBtn = document.querySelector('.filters button.active');
+            if (allBtn) allBtn.setAttribute('aria-pressed', 'true');
+        });
+    </script>
+
+    <!-- NOSCRIPT FALLBACK FOR SEO -->
+    <noscript>
+        <div style="background:#000; color:#00ff7f; padding:20px; text-align:center;">
+            <h3>Wish Fountain Hub - Wishes for Every Occasion</h3>
+            <ul>
+                <li><a href="birthday-wishes-generator.html">Birthday Wishes (200+)</a></li>
+                <li><a href="eid-wishes-generator.html">Eid Wishes (50+)</a></li>
+                <li><a href="christmas-card.html">Christmas Wishes (100+)</a></li>
+                <li><a href="newyear-wish-fountain-generator.html">New Year Wishes (75+)</a></li>
+                <li><a href="wedding-wishes.html">Wedding Wishes (60+)</a></li>
+                <li><a href="thank-you-wishes.html">Thank You Notes (40+)</a></li>
+            </ul>
+        </div>
+    </noscript>
+</body>
+</html>
