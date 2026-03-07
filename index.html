@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1X8ZVL0S2V"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1X8ZVL0S2V',{'send_page_view':false});window.addEventListener('load',()=>gtag('event','page_view'));</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1X8ZVL0S2V');</script>
 <title>FREE Wishing Cards 2026 | Ramadan • Eid • Diwali • Christmas • Birthday | 1000+ Designs</title>
 <meta name="google-site-verification" content="785fr8G00AIxuy5xvBIXfZtBmD7qwW5-b_zCYqs-6dM"/>
 <meta name="description" content="✨ FREE greeting cards for EVERY occasion! Ramadan Mubarak, Eid, Diwali, Christmas, Birthday, Anniversary & more. 1000+ designs. No signup. Instant download.">
@@ -23,27 +23,22 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Wish Fountain Hub","url":"https://wishfountain.site/","description":"Free greeting cards for all occasions","potentialAction":{"@type":"SearchAction","target":"https://wishfountain.site/?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<!-- Google Fonts: non-blocking via media trick, then swap to all -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Righteous&family=Poppins:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Righteous&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-<!-- Font Awesome deferred — loads after paint, no render-blocking -->
-<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --gold:#FFD700;--gold2:#FFA500;--rose:#FF6B9D;--violet:#9B59FF;
   --cyan:#00D4FF;--lime:#39FF14;
-  --ff-h:'Righteous',system-ui,cursive;
-  --ff-b:'Poppins',system-ui,sans-serif;
+  --ff-h:'Righteous',cursive;
+  --ff-b:'Poppins',sans-serif;
 }
 html{scroll-behavior:smooth;}
 body{font-family:var(--ff-b);background:#07040f;color:#fff;overflow-x:hidden;cursor:none;}
 /* Custom cursor */
-.cursor{position:fixed;top:0;left:0;width:22px;height:22px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:99999;will-change:transform;transition:width .2s,height .2s,background .2s;}
-.cursor-dot{position:fixed;top:0;left:0;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;will-change:transform;}
+.cursor{position:fixed;width:22px;height:22px;border:2px solid var(--gold);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;}
+.cursor-dot{position:fixed;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);}
 body a:hover~.cursor,body button:hover~.cursor{width:38px;height:38px;background:rgba(255,215,0,.12);}
 /* BG */
 .bg-wrap{position:fixed;inset:0;z-index:0;overflow:hidden;}
@@ -53,23 +48,21 @@ body a:hover~.cursor,body button:hover~.cursor{width:38px;height:38px;background
     radial-gradient(ellipse 50% 50% at 80% 20%,rgba(255,107,157,.14) 0%,transparent 55%),
     radial-gradient(ellipse 40% 40% at 50% 90%,rgba(0,212,255,.1) 0%,transparent 55%),
     radial-gradient(ellipse 30% 30% at 10% 80%,rgba(255,215,0,.07) 0%,transparent 50%);
-  animation:bgPulse 10s ease-in-out infinite alternate;will-change:transform;}
-@keyframes bgPulse{0%{transform:scale(1);}100%{transform:scale(1.05);}}
+  animation:bgPulse 10s ease-in-out infinite alternate;}
+@keyframes bgPulse{0%{opacity:.7;}100%{opacity:1;transform:scale(1.05);}}
 .star{position:absolute;border-radius:50%;animation:twink var(--d,2s) ease-in-out infinite alternate;}
 @keyframes twink{0%{opacity:.15;transform:scale(.7);}100%{opacity:.95;transform:scale(1.3);}}
-.orb{position:absolute;border-radius:50%;filter:blur(70px);animation:orbDrift var(--od,15s) ease-in-out infinite;will-change:transform;}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);animation:orbDrift var(--od,15s) ease-in-out infinite;}
 @keyframes orbDrift{0%,100%{transform:translate(0,0);}33%{transform:translate(50px,-70px);}66%{transform:translate(-40px,50px);}}
 /* Particles canvas */
-#ptc{position:fixed;inset:0;pointer-events:none;z-index:1;will-change:transform;}
-/* Force font-display:swap for any loaded webfonts */
-@font-face{font-display:swap;}
+#ptc{position:fixed;inset:0;pointer-events:none;z-index:1;}
 
 /* ── NAV ── */
 nav{position:sticky;top:0;z-index:900;background:rgba(7,4,15,.82);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,215,0,.12);}
 .nav-in{max-width:1400px;margin:0 auto;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;gap:16px;}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;}
 .brand-ico{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#FFD700,#FFA500);display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 0 22px rgba(255,215,0,.45);animation:icoGlow 2.5s ease-in-out infinite alternate;}
-@keyframes icoGlow{0%{opacity:.85;transform:scale(1);}100%{opacity:1;transform:scale(1.06);}}
+@keyframes icoGlow{0%{box-shadow:0 0 22px rgba(255,215,0,.4);}100%{box-shadow:0 0 50px rgba(255,215,0,.8),0 0 80px rgba(255,165,0,.3);}}
 .brand-name{font-family:var(--ff-h);font-size:1.4rem;background:linear-gradient(135deg,#FFD700,#FF6B9D,#9B59FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .nav-links{list-style:none;display:flex;gap:3px;align-items:center;}
 .nav-links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:.85rem;font-weight:600;padding:7px 15px;border-radius:50px;border:1px solid transparent;transition:all .25s;}
@@ -78,26 +71,27 @@ nav{position:sticky;top:0;z-index:900;background:rgba(7,4,15,.82);backdrop-filte
 .burger:hover{background:rgba(255,215,0,.18);}
 
 /* ── HERO ── */
-.hero{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 24px 60px;overflow:hidden;contain:layout;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,215,0,.07);border:1px solid rgba(255,215,0,.25);padding:7px 22px;border-radius:50px;font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:30px;}
-.hero h1{font-family:var(--ff-h);font-size:clamp(3rem,9vw,6.5rem);line-height:1.08;margin-bottom:22px;}
+.hero{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 24px 60px;overflow:hidden;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,215,0,.07);border:1px solid rgba(255,215,0,.25);padding:7px 22px;border-radius:50px;font-size:.78rem;font-weight:700;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:30px;animation:fadeD .8s ease both;}
+@keyframes fadeD{from{opacity:0;transform:translateY(-18px);}to{opacity:1;transform:translateY(0);}}
+.hero h1{font-family:var(--ff-h);font-size:clamp(3rem,9vw,6.5rem);line-height:1.08;margin-bottom:22px;animation:fadeU 1s ease .18s both;}
 @keyframes fadeU{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 .g1{background:linear-gradient(135deg,#FFD700,#FFA500);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 35px rgba(255,215,0,.55));}
 .g2{background:linear-gradient(135deg,#FF6B9D,#9B59FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(155,89,255,.45));}
 .g3{background:linear-gradient(135deg,#00D4FF,#39FF14);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-sub{font-size:1.1rem;color:rgba(255,255,255,.6);max-width:580px;margin:0 auto 36px;line-height:1.75;}
-.cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-bottom:44px;}
+.hero-sub{font-size:1.1rem;color:rgba(255,255,255,.6);max-width:580px;margin:0 auto 36px;line-height:1.75;animation:fadeU 1s ease .32s both;}
+.cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;animation:fadeU 1s ease .46s both;margin-bottom:44px;}
 .cta-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#FFD700,#FFA500);color:#07040f;font-weight:800;font-size:1rem;padding:15px 36px;border-radius:50px;text-decoration:none;box-shadow:0 0 40px rgba(255,215,0,.4);transition:transform .25s,box-shadow .25s;animation:ctaG 2s ease-in-out infinite alternate;}
-@keyframes ctaG{0%{opacity:.9;transform:scale(1);}100%{opacity:1;transform:scale(1.03);}}
+@keyframes ctaG{0%{box-shadow:0 0 40px rgba(255,215,0,.4);}100%{box-shadow:0 0 70px rgba(255,215,0,.75),0 0 110px rgba(255,165,0,.3);}}
 .cta-primary:hover{transform:scale(1.06);}
 .cta-sec{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:#fff;font-weight:700;font-size:1rem;padding:15px 36px;border-radius:50px;text-decoration:none;backdrop-filter:blur(10px);transition:all .25s;}
 .cta-sec:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);}
 /* Floating emojis */
-.fe-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden;contain:strict;}
-.fe{position:absolute;animation:feFloat var(--fd,8s) ease-in-out infinite;opacity:.3;filter:blur(.3px);font-size:1.9rem;width:2rem;height:2rem;}
+.fe-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.fe{position:absolute;animation:feFloat var(--fd,8s) ease-in-out infinite;opacity:.3;filter:blur(.3px);font-size:1.9rem;}
 @keyframes feFloat{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-28px) rotate(12deg);}}
 /* Tag cloud */
-.tag-cloud{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.tag-cloud{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;animation:fadeU 1s ease .6s both;}
 .ftag{display:inline-flex;align-items:center;gap:7px;padding:8px 19px;border-radius:50px;font-size:.83rem;font-weight:700;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);backdrop-filter:blur(12px);transition:all .3s;cursor:default;animation:tagF var(--tf,4s) ease-in-out infinite;}
 @keyframes tagF{0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);}}
 .ftag:hover{border-color:var(--gold);background:rgba(255,215,0,.1);color:var(--gold);transform:scale(1.08) translateY(-4px);}
@@ -233,15 +227,15 @@ footer{background:#040210;border-top:1px solid rgba(255,215,0,.08);padding:70px 
 footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 0%,#FFD700 25%,#FF6B9D 50%,#9B59FF 75%,transparent 100%);}
 .fi{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr repeat(4,1fr);gap:38px;margin-bottom:50px;}
 .fb h2{font-family:var(--ff-h);font-size:1.35rem;margin-bottom:12px;background:linear-gradient(135deg,#FFD700,#FF6B9D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.fb p{color:rgba(255,255,255,.6);font-size:.86rem;line-height:1.85;}
-.fcol h3{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:16px;}
-.fcol a{display:flex;align-items:center;gap:8px;text-decoration:none;color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:9px;transition:all .25s;padding:2px 0;}
+.fb p{color:rgba(255,255,255,.35);font-size:.86rem;line-height:1.85;}
+.fcol h4{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:3px;color:var(--gold);margin-bottom:16px;}
+.fcol a{display:flex;align-items:center;gap:8px;text-decoration:none;color:rgba(255,255,255,.4);font-size:.86rem;margin-bottom:9px;transition:all .25s;padding:2px 0;}
 .fcol a:hover{color:#fff;transform:translateX(5px);}
 .fcol a i{color:var(--gold);width:16px;font-size:.78rem;}
 .fbot-links{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px;}
-.fbot-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:.78rem;padding:4px 13px;border:1px solid rgba(255,255,255,.1);border-radius:50px;transition:all .25s;}
+.fbot-links a{color:rgba(255,255,255,.25);text-decoration:none;font-size:.78rem;padding:4px 13px;border:1px solid rgba(255,255,255,.06);border-radius:50px;transition:all .25s;}
 .fbot-links a:hover{color:#fff;border-color:rgba(255,215,0,.25);}
-.fbot{text-align:center;color:rgba(255,255,255,.55);font-size:.78rem;}
+.fbot{text-align:center;color:rgba(255,255,255,.2);font-size:.78rem;}
 .fbot p+p{margin-top:5px;}
 
 /* ── REVEAL ── */
@@ -273,16 +267,12 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:#07040f;}
 ::-webkit-scrollbar-thumb{background:linear-gradient(#FFD700,#FF6B9D);border-radius:3px;}
-/* Skip link */
-.skip-link{position:absolute;top:-60px;left:16px;background:var(--gold);color:#07040f;padding:8px 18px;border-radius:0 0 8px 8px;font-weight:700;font-size:.9rem;z-index:99999;transition:top .2s;text-decoration:none;}
-.skip-link:focus{top:0;}
 </style>
 </head>
 <body>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-dot" id="cdot"></div>
-<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- Animated BG -->
 <div class="bg-wrap" id="bgWrap">
@@ -312,7 +302,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
   </div>
 </nav>
 
-<main id="main-content">
+<main>
 
 <!-- HERO -->
 <section class="hero">
@@ -386,7 +376,7 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
     <p>Every single card is 100% FREE — no catch, no signup, just pure love.</p>
   </div>
   <div class="occ-grid">
-    <a href="festival-wishes-generator.html" class="occ-card c-ram reveal" data-d="1">
+    <a href="ramadan-wishes-generator.html" class="occ-card c-ram reveal" data-d="1">
       <div class="cg"></div>
       <span class="ce">🌙</span>
       <h3>Ramadan Mubarak</h3>
@@ -602,27 +592,27 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
       <p>Free greeting cards for every occasion. Respecting all faiths, celebrating every beautiful moment. Made with ❤️ in Pakistan 🇵🇰 · Serving the world 🌍</p>
     </div>
     <div class="fcol">
-      <h3>🌙 Islamic</h3>
+      <h4>🌙 Islamic</h4>
       <a href="festival-wishes-generator.html"><i class="fas fa-moon"></i> Ramadan Cards</a>
       <a href="eid-wishes-generator.html"><i class="fas fa-star"></i> Eid-ul-Fitr</a>
       <a href="eid-wishes-generator.html"><i class="fas fa-kaaba"></i> Eid-ul-Adha</a>
       <a href="festival-wishes-generator.html"><i class="fas fa-hands-praying"></i> Islamic Duas</a>
     </div>
     <div class="fcol">
-      <h3>🪔 Hindu</h3>
+      <h4>🪔 Hindu</h4>
       <a href="diwali-wishes-generator.html"><i class="fas fa-om"></i> Diwali</a>
       <a href="dussehra-wishes-generator.html"><i class="fas fa-om"></i> Dussehra</a>
       <a href="engagement-wishes-generator.html"><i class="fas fa-ring"></i> Engagement</a>
       <a href="wishfountain-baisakhi-wishes.html"><i class="fas fa-seedling"></i> Baisakhi</a>
     </div>
     <div class="fcol">
-      <h3>🎄 Christian</h3>
+      <h4>🎄 Christian</h4>
       <a href="christmas-card.html"><i class="fas fa-cross"></i> Christmas</a>
       <a href="newyear-wish-fountain-generator.html"><i class="fas fa-glass-cheers"></i> New Year</a>
       <a href="thank-you-wishes.html"><i class="fas fa-heart"></i> Thanksgiving</a>
     </div>
     <div class="fcol">
-      <h3>❤️ Universal</h3>
+      <h4>❤️ Universal</h4>
       <a href="birthday-wishes-generator.html"><i class="fas fa-cake-candles"></i> Birthday</a>
       <a href="anniversary-wishes-generator-pro.html"><i class="fas fa-heart"></i> Anniversary</a>
       <a href="wedding-wishes.html"><i class="fas fa-ring"></i> Wedding</a>
@@ -646,13 +636,8 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
 /* ── CURSOR ── */
 const cur=document.getElementById('cursor'),dot=document.getElementById('cdot');
 let mx=0,my=0,cx=0,cy=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-(function animC(){
-  cx+=(mx-cx)*.11;cy+=(my-cy)*.11;
-  cur.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-  dot.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;
-  requestAnimationFrame(animC);
-})();
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.cssText=`left:${mx}px;top:${my}px`;});
+(function animC(){cx+=(mx-cx)*.11;cy+=(my-cy)*.11;cur.style.cssText=`left:${cx}px;top:${cy}px`;requestAnimationFrame(animC);})();
 document.querySelectorAll('a,button').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.style.width='38px';cur.style.height='38px';cur.style.background='rgba(255,215,0,.12)';});
   el.addEventListener('mouseleave',()=>{cur.style.width='22px';cur.style.height='22px';cur.style.background='transparent';});
@@ -660,7 +645,7 @@ document.querySelectorAll('a,button').forEach(el=>{
 
 /* ── STARS ── */
 const stEl=document.getElementById('stars');
-for(let i=0;i<80;i++){
+for(let i=0;i<140;i++){
   const s=document.createElement('div');
   s.className='star';
   const sz=Math.random()*2.8+.8;
@@ -670,17 +655,15 @@ for(let i=0;i<80;i++){
 
 /* ── PARTICLES ── */
 const cvs=document.getElementById('ptc'),pctx=cvs.getContext('2d');
-let cvW=window.innerWidth,cvH=window.innerHeight;
-function resizePtc(){cvW=window.innerWidth;cvH=window.innerHeight;cvs.width=cvW;cvs.height=cvH;}
-window.addEventListener('resize',resizePtc,{passive:true});
-requestAnimationFrame(()=>resizePtc());
+function resizePtc(){cvs.width=window.innerWidth;cvs.height=window.innerHeight;}
+resizePtc();window.addEventListener('resize',resizePtc);
 const EMOJIS=['✨','🌟','⭐','💫','🎊','🎉','🌙','🪔','🎄','❤️','🎁','🌺','💖','🕌'];
-const pts=Array.from({length:22},()=>({
-  x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight,
-  vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,
+const pts=Array.from({length:30},()=>({
+  x:Math.random()*cvs.width,y:Math.random()*cvs.height,
+  vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
   emoji:EMOJIS[Math.floor(Math.random()*EMOJIS.length)],
-  sz:Math.random()*12+8,op:Math.random()*.28+.06,
-  rot:Math.random()*Math.PI*2,rv:(Math.random()-.5)*.015
+  sz:Math.random()*14+9,op:Math.random()*.35+.08,
+  rot:Math.random()*Math.PI*2,rv:(Math.random()-.5)*.018
 }));
 (function drawPtc(){
   pctx.clearRect(0,0,cvs.width,cvs.height);
