@@ -271,7 +271,36 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
 ::-webkit-scrollbar-track{background:#07040f;}
 ::-webkit-scrollbar-thumb{background:linear-gradient(#FFD700,#FF6B9D);border-radius:3px;}
 
-/* Fix heading order for accessibility (no visual change) */
+/* ===== PERFORMANCE & ACCESSIBILITY FIXES ===== */
+/* Fix color contrast - make text fully white */
+.hero-sub,
+.sec-head p,
+.fa2,
+.mission p,
+.wcard li,
+.clinks a {
+    color: rgba(255,255,255,0.9) !important;
+}
+
+/* Ensure heading hierarchy */
+h1 { font-size: clamp(3rem, 9vw, 6.5rem); }
+h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); }
+h3 { font-size: 1.2rem; }
+h4 { font-size: 1rem; }
+
+/* Optimize animations for performance */
+.fe, .ftag, .orb {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Reduce layout shifts */
+.occ-card, .cblock, .tc {
+    min-height: 200px;
+    contain: content;
+}
+
+/* Fix heading order - ensure proper hierarchy */
 .sec-head h2 {
     font-family: var(--ff-h);
     font-size: clamp(1.9rem, 4vw, 3.2rem);
@@ -279,28 +308,42 @@ footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;back
     margin-bottom: 12px;
 }
 
-/* Ensure all section headings are recognized as h2 */
 .wrap .sec-head h2 {
     display: block;
 }
 
-/* Fix color contrast for better accessibility */
-.hero-sub {
-    color: #FFFFFF !important;
+.cblock h3 {
+    font-family: var(--ff-h);
+    font-size: 1.2rem;
+    margin: 0;
 }
 
-.sec-head p {
-    color: #FFFFFF !important;
+/* Improve text readability */
+p, li, a, .pill, .obtn {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
-.hero-eyebrow {
-    color: #FFD700 !important;
-}
-
-/* Optimize font loading performance */
+/* Mobile optimizations */
 @media (max-width: 768px) {
     .hero h1 {
-        font-size: clamp(2.5rem, 8vw, 4rem);
+        font-size: clamp(2.2rem, 7vw, 3.5rem);
+    }
+    
+    .hero-sub {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+    
+    .fe {
+        display: none; /* Remove floating emojis on mobile for performance */
+    }
+}
+
+/* Print styles - hide decorative elements when printing */
+@media print {
+    .cursor, .cursor-dot, .fe-wrap, .bg-wrap, #ptc {
+        display: none !important;
     }
 }
 </style>
